@@ -20,7 +20,8 @@
             </div>
         </div>
         <br>
-        <br><hr>        
+        <br>
+        <hr>
         <ul class="nav navmenu-nav">
             <li>
                 <a href="doctor.html">
@@ -91,7 +92,7 @@
         <div class="container">
             <div class="tabbable">
                 <ul class="nav nav-pills">
-                    <li class="active" >
+                    <li class="active">
                         <a href="#tab1" data-toggle="tab">Анамнез</a>
                     </li>
                     <li>
@@ -121,21 +122,23 @@
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active" id="tab1">
-                        <div class="form-group">
-                            <label class="control-label">Жалобы больного</label>
-                            <textarea class="form-control" rows="4"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">Anamnesis morbi</label>
-                            <textarea class="form-control" rows="4"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">Anamnesis vitae</label>
-                            <textarea class="form-control" rows="4"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">Перенесенные заболевания</label>
-                            <textarea class="form-control" rows="4"></textarea>
+                        <div class="container">
+                            <div class="form-group">
+                                <label class="control-label">Жалобы больного</label>
+                                <textarea class="form-control" rows="4"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Anamnesis morbi</label>
+                                <textarea class="form-control" rows="4"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Anamnesis vitae</label>
+                                <textarea class="form-control" rows="4"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Перенесенные заболевания</label>
+                                <textarea class="form-control" rows="4"></textarea>
+                            </div>
                         </div>
                         <div class="text-center">
                             <a role="button" class="btn btn-success">Норма</a>
@@ -146,83 +149,63 @@
                     </div>
                     <div class="tab-pane" id="tab2">
                         <div class="container">
-                            <form class="form-horizontal" role="form">                                
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="col-sm-3 control-label">Состояние</label>
-                                        <div class="col-sm-9">
-                                            <select class="form-control" id="sel1">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="control-label">Состояние</label>
+                                    <select class="form-control" id="sel1">
                                            <option value="1">1</option>   
                                            <option value="2">2</option>  
                                            <option value="3">3</option>   
-                                        </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-sm-3 control-label">Сознание</label>
-                                        <div class="col-sm-9">
-                                            <select class="form-control" id="sel1">
-                                           <option value="1">1</option>   
-                                           <option value="2">2</option>  
-                                           <option value="3">3</option>   
-                                        </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-sm-3 control-label">Положение</label>
-                                        <div class="col-sm-9">
-                                            <select class="form-control" id="sel1">
-                                           <option value="1">1</option>   
-                                           <option value="2">2</option>  
-                                           <option value="3">3</option>   
-                                        </select>
-                                        </div>
-                                    </div>
+                                    </select>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="col-sm-3 control-label">Мышцы</label>
-                                        <div class="col-sm-9">
-                                            <input type="email" class="form-control" id="inputEmail3">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-sm-3 control-label">Кости</label>
-                                        <div class="col-sm-9">
-                                            <input type="email" class="form-control" id="inputEmail3">
-                                        </div>
-                                    </div>
+                                <div class="form-group">
+                                    <label class="control-label">Сознание</label>
+                                    <select class="form-control" id="sel1">
+                                           <option value="1">1</option>   
+                                           <option value="2">2</option>  
+                                           <option value="3">3</option>   
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Положение</label>
+                                    <select class="form-control" id="sel1">
+                                           <option value="1">1</option>   
+                                           <option value="2">2</option>  
+                                           <option value="3">3</option>   
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="control-label">Мышцы</label>
+                                    <input type="email" class="form-control" id="inputEmail3">
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Кости</label>
+                                    <input type="email" class="form-control" id="inputEmail3">
+                                </div>
 
-                                    <div class="form-group">
-                                        <label class="col-sm-3 control-label">Суставы</label>
-                                        <div class="col-sm-9">
-                                            <input type="email" class="form-control" id="inputEmail3">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-sm-3 control-label">Слизистые</label>
-                                        <div class="col-sm-9">
-                                            <input type="email" class="form-control" id="inputEmail3">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-sm-3 control-label">Подкожная клетчатка</label>
-                                        <div class="col-sm-9">
-                                            <input type="email" class="form-control" id="inputEmail3">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-sm-3 control-label">Лимфатические узлы</label>
-                                        <div class="col-sm-9">
-                                            <input type="email" class="form-control" id="inputEmail3">
-                                        </div>
-                                    </div>
+                                <div class="form-group">
+                                    <label class="control-label">Суставы</label>
+                                    <input type="email" class="form-control" id="inputEmail3">
                                 </div>
-                            </form>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">Результаты осмотра</label>
-                            <textarea class="form-control" rows="4"></textarea>
+                                <div class="form-group">
+                                    <label class="control-label">Слизистые</label>
+                                    <input type="email" class="form-control" id="inputEmail3">
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Подкожная клетчатка</label>
+                                    <input type="email" class="form-control" id="inputEmail3">
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Лимфатические узлы</label>
+                                    <input type="email" class="form-control" id="inputEmail3">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Результаты осмотра</label>
+                                <textarea class="form-control" rows="4"></textarea>
+                            </div>
                         </div>
                         <div class="text-center">
                             <a role="button" class="btn btn-success">Норма</a>
@@ -556,7 +539,7 @@
                                     <div class="col-sm-8">
                                         <input type="text" class="form-control">
                                     </div>
-                                </div>                                
+                                </div>
                             </form>
                         </div>
                         <div class="text-center">
@@ -567,13 +550,15 @@
                         </div>
                     </div>
                     <div class="tab-pane" id="tab7">
-                        <div class="form-group">
-                            <label class="control-label">Status localis</label>
-                            <textarea class="form-control" rows="4"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">Диагноз</label>
-                            <input class="form-control"></input>
+                        <div class="container">
+                            <div class="form-group">
+                                <label class="control-label">Status localis</label>
+                                <textarea class="form-control" rows="4"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Диагноз</label>
+                                <input class="form-control"></input>
+                            </div>
                         </div>
                         <div>
                             <div class="col-sm-3">
@@ -595,9 +580,11 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="control-label">Другие системы</label>
-                            <textarea class="form-control" rows="4"></textarea>
+                        <div class="container">
+                            <div class="form-group">
+                                <label class="control-label">Другие системы</label>
+                                <textarea class="form-control" rows="4"></textarea>
+                            </div>
                         </div>
                         <div class="text-center">
                             <a role="button" class="btn btn-success">Норма</a>
@@ -673,13 +660,15 @@
                         </div>
                     </div>
                     <div class="tab-pane" id="tab9">
-                        <div class="form-group">
-                            <label class="control-label">Лечение</label>
-                            <textarea class="form-control" rows="4"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">Рекомендации</label>
-                            <textarea class="form-control" rows="4"></textarea>
+                        <div class="container">
+                            <div class="form-group">
+                                <label class="control-label">Лечение</label>
+                                <textarea class="form-control" rows="4"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Рекомендации</label>
+                                <textarea class="form-control" rows="4"></textarea>
+                            </div>
                         </div>
                         <div class="text-center">
                             <a role="button" class="btn btn-success">Норма</a>
