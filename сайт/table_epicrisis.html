@@ -96,48 +96,53 @@
         <a class="navbar-brand" href="index.html">MedSpace</a>
     </div>
     <div class="container">
-        <form class="form-horizontal">
-            <h2 align="center">Амбулаторная карта пациента</h2>
-            <div class="form-group">
-                <div class="col-md-5">
-                    <label class="control-label">Ф.И.О. пациента</label>
-                    <input type="text" class="form-control" id="card_id">
-                </div>
-                <div class="col-md-5">
-                    <label class="control-label">№ карты</label>
-                    <input type="text" class="form-control" id="card_id">
-                </div>
+        <h2 align="center">Амбулаторная карта пациента</h2>
+        <div class="form-group">
+            <div class="col-md-5">
+                <label class="control-label">Ф.И.О. пациента</label>
+                <input type="text" class="form-control" id="card_id">
             </div>
-            <h3 align="center">Новая запись</h3>
-            <div class="form-group">
-                <div class="col-sm-5">
-                    <label class="control-label">Ф.И.О. врача</label>
-                    <input type="text" class="form-control" id="fio">
-                </div>
-                <div class="col-sm-4">
-                    <label class="control-label">Специальность</label>
-                    <input type="text" class="form-control" id="bday">
-                </div>
-                <div class="col-sm-3">
-                    <label class="control-label">Дата</label>
-                    <input type="text" class="form-control" id="age">
-                </div>
+            <div class="col-md-4">
+                <label class="control-label">№ карты</label>
+                <input type="text" class="form-control" id="card_id">
             </div>
-            <label class="control-label">Осмотр</label>
-            <textarea class="form-control" rows="4"></textarea>
-            <label class="control-label">Диагноз</label>
-            <input type="text" class="form-control" id="card_id">
-            <label class="control-label">Лечение</label>
-            <textarea class="form-control" rows="4"></textarea>
-            <label class="control-label">Рекомендации</label>
-            <textarea class="form-control" rows="4"></textarea>
-            <br>
-            <div class="text-center">
-                <a role="button" class="btn btn-primary">Сохранить</a>
-                <a role="button" class="btn btn-primary">Печать</a>
-                <a role="button" class="btn btn-primary" href="table_ambulatory_cards.html">Закрыть</a>
+            <div class="col-md-3">
+                <br>
+                <a class="btn btn-sm btn-block btn-success" href="epicrisis.html" role="button">Добавить запись</a>
             </div>
-        </form>
+        </div>
+        <div class="table-responsive container">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>№</th>
+                        <th>Дата</th>
+                        <th>Врач</th>
+                        <th>Диагноз</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td> </td>
+                        <td> </td>
+                        <td> </td>
+                        <td> </td>
+                    </tr>
+                    <tr>
+                        <td> </td>
+                        <td> </td>
+                        <td> </td>
+                        <td> </td>
+                    </tr>
+                    <tr>
+                        <td> </td>
+                        <td> </td>
+                        <td> </td>
+                        <td> </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
     <script src="js/jquery-2.2.4.min.js"></script>
     <script src="js/jasny-bootstrap.min.js"></script>
