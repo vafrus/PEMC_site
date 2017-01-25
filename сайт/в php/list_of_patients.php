@@ -110,7 +110,7 @@
                     exit();
                 }
 
-                $query = "SELECT FIO, Number_card FROM patient";
+                $query = "SELECT `Number_card`, `Fam`, `Imya`, `Otch` FROM `patient`";
 
                 if ($result = mysqli_query($link, $query)) 
                 {
@@ -120,7 +120,7 @@
                     {
                         echo '<tr>' .
                                 '<td>' . $row["Number_card"] . '</td>'.
-                                '<td>' . $row["FIO"] . '</td>'.
+                                '<td>' . $row["Fam"] . " " . $row["Imya"] . " " . $row["Otch"] . '</td>'.
                                 '<td>' .  '</td>'.
                                 '<td>' .  '</td>'.
                                 '<td>
