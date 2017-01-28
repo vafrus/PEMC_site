@@ -21,7 +21,9 @@ if(isset($_POST['submit']))
 
     // проверяем, не сущестует ли пользователя с таким именем
     $query = mysqli_query($link, "SELECT COUNT(id_doctor) FROM login_pass WHERE login='".mysqli_real_escape_string($link, $_POST['login'])."'");
-    if(mysqli_num_rows($query) > 0)
+    $row = mysqli_fetch_assoc($query);
+    echo $row["COUNT(id_doctor)"] . "\n";
+    if($row["COUNT(id_doctor)"] == 1)
     {
         $err[] = "Пользователь с таким логином уже существует в базе данных";
     }
@@ -34,9 +36,9 @@ if(isset($_POST['submit']))
 
         // Убераем лишние пробелы и делаем двойное шифрование
         $password = md5(md5(trim($_POST['password'])));
-
-        mysqli_query($link,"INSERT INTO login_pass SET id_doctor='".$login."', pass='".$password."'");
-        header("Location: login.php"); exit();
+        
+        mysqli_query($link,"INSERT INTO login_pass SET login='".$login."', pass='".$password."'");
+        header("Location: index.php"); exit();
     }
     else
     {
@@ -48,8 +50,33 @@ if(isset($_POST['submit']))
     }
 }
 ?>
-<form method="POST">
-    Логин <input name="login" type="text"><br>
-    Пароль <input name="password" type="password"><br>
-    <input name="submit" type="submit" value="Зарегистрироваться">
-</form>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MedSpace</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/signin.css" rel="stylesheet" type="text/css">
+    <link href="css/jasny-bootstrap.min.css" rel="stylesheet" media="screen">
+</head>
+
+<body>
+    <img src="img/logo2.png" alt="Логотип" height=66 width=200 style="margin:50px auto;display:block">
+    <div class="well">
+        <legend align="center">Регистрация</legend>
+        <form method="POST" role="form">
+            <div class="form-group">
+                <label for="login">Логин</label>                
+                <input name="login" type="text" class="form-control" id="login" placeholder="Логин">
+            </div>
+            <div class="form-group">
+                <label for="pass">Пароль</label>
+                <input name="password" type="password" class="form-control" id="pass" placeholder="Пароль">
+            </div>
+            <button name="submit" type="submit" class="btn btn-success">Зарегистрироваться</button>
+        </form>
+    </div>
+    <script src="js/jquery-2.2.4.min.js"></script>
+    <script src="js/jasny-bootstrap.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</body>
+</html>
