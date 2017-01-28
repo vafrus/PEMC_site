@@ -14,7 +14,7 @@ function generateCode($length=6) {
 
 // Соединямся с БД
 $link=mysqli_connect("localhost", "root", "santikwh", "medspace");
-
+mysqli_set_charset($link, "utf8");
 if(isset($_POST['submit']))
 {
     // Вытаскиваем из БД запись, у которой логин равняеться введенному
