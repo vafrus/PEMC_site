@@ -49,14 +49,14 @@
                         </a>
                     </li>
                     <li>
-                        <a href="index5.php">
+                        <a href="reception.php">
                             Направления
                         </a>
                     </li>
                 </ul>
             </li>
             <li>
-                <a href="index6.php">
+                <a href="timetable_doctor.php">
                     <span class="glyphicon glyphicon-calendar"></span> График работы
                 </a>
             </li>
@@ -70,7 +70,7 @@
         		<?php
 		echo '<p class="panel-title text-center">' . date('d.m.Y') . '</p>';
 		?>
-		<script type="text/javascript" src="js/my.js"></script>
+		<script type="text/javascript" src="js/time.js"></script>
     </div>
     <div class="panel panel-default">
         <div class="panel-body grey">
@@ -83,15 +83,16 @@
         </div>
     </div>
     <div>
-        <h2 align="center">Направления</h2>
+        <h2 align="center">Услуги</h2>
         <div class="table-responsive container">
             <table class="table table-striped">
                 <thead>
                     <tr>
                         <th>Номер карты</th>
                         <th>Ф.И.О. пациента</th>
-                        <th>Куда направлен</th>
+                        <th>Наименование услуги</th>
                         <th>Ф.И.О. врача</th>
+                        <th>Стоимость</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -100,14 +101,17 @@
                         <td> </td>
                         <td> </td>
                         <td> </td>
-                    </tr>
-                    <tr>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
                         <td> </td>
                     </tr>
                     <tr>
+                        <td> </td>
+                        <td> </td>
+                        <td> </td>
+                        <td> </td>
+                        <td> </td>
+                    </tr>
+                    <tr>
+                        <td> </td>
                         <td> </td>
                         <td> </td>
                         <td> </td>

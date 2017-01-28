@@ -44,19 +44,19 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="services.php">
                             Услуги
                         </a>
                     </li>
                     <li>
-                        <a href="index5.php">
+                        <a href="reception.php">
                             Направления
                         </a>
                     </li>
                 </ul>
             </li>
             <li>
-                <a href="index6.php">
+                <a href="timetable_doctor.php">
                     <span class="glyphicon glyphicon-calendar"></span> График работы
                 </a>
             </li>
@@ -70,7 +70,7 @@
         <?php
 		echo '<p class="panel-title text-center">' . date('d.m.Y') . '</p>';
 		?>
-		<script type="text/javascript" src="js/my.js"></script>
+		<script type="text/javascript" src="js/time.js"></script>
     </div>
 
     <div class="panel panel-default">

@@ -15,7 +15,7 @@
         <div class="container-fluid">
             <div class="navbar-header">
                 <a class="navbar-brand" href="index.php">
-                    <img alt="Brand" src="img/logo2.png" height=66 width=200>
+                    <img alt="Brand" src="img/logo2.png" height=66 width=200 align="middle">
                 </a>
             </div>
         </div>
@@ -44,19 +44,19 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="services.php">
                             Услуги
                         </a>
                     </li>
                     <li>
-                        <a href="index5.php">
+                        <a href="reception.php">
                             Направления
                         </a>
                     </li>
                 </ul>
             </li>
             <li>
-                <a href="index6.php">
+                <a href="timetable_doctor.php">
                     <span class="glyphicon glyphicon-calendar"></span> График работы
                 </a>
             </li>
@@ -70,7 +70,7 @@
         		<?php
 		echo '<p class="panel-title text-center">' . date('d.m.Y') . '</p>';
 		?>
-		<script type="text/javascript" src="js/my.js"></script>
+		<script type="text/javascript" src="js/time.js"></script>
     </div>
     <div class="panel panel-default">
         <div class="panel-body grey">
@@ -99,9 +99,21 @@
             <div class="col-md-10">
                 <form class="form-horizontal" role="form">
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">Ф.И.О.</label>
+                        <label class="col-sm-2 control-label">Фамилия</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputEmail3" disabled>
+                            <input type="text" class="form-control" id="inputEmail3">
+                        </div>
+                    </div>
+                   <div class="form-group">
+                        <label class="col-sm-2 control-label">Имя</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputEmail3">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Отчество</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputEmail3">
                         </div>
                     </div>
                     <div class="form-group">

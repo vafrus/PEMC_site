@@ -44,19 +44,19 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="services.php">
                             Услуги
                         </a>
                     </li>
                     <li>
-                        <a href="index5.php">
+                        <a href="reception.php">
                             Направления
                         </a>
                     </li>
                 </ul>
             </li>
             <li>
-                <a href="index6.php">
+                <a href="timetable_doctor.php">
                     <span class="glyphicon glyphicon-calendar"></span> График работы
                 </a>
             </li>
@@ -70,7 +70,7 @@
         		<?php
 		echo '<p class="panel-title text-center">' . date('d.m.Y') . '</p>';
 		?>
-		<script type="text/javascript" src="js/my.js"></script>   
+		<script type="text/javascript" src="js/time.js"></script>   
     </div>
     <div class="panel panel-default">
         <div class="panel-body grey">
@@ -101,12 +101,24 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Номер карты</label>
                         <div class="col-sm-5">
-                            <input type="text" class="form-control" id="inputEmail3">
+                            <input type="n" class="form-control" id="inputEmail3">
                         </div>
                         <a role="button" class="pull-right btn btn-primary">Сохранить всё</a>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">Ф.И.О.</label>
+                        <label class="col-sm-2 control-label">Фамилия</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputEmail3">
+                        </div>
+                    </div>
+                   <div class="form-group">
+                        <label class="col-sm-2 control-label">Имя</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputEmail3">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Отчество</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="inputEmail3">
                         </div>
@@ -174,15 +186,11 @@
                             <input type="text" class="form-control" id="inputPassword3">
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">Телефонный номер</label>
-                        <div class="container">
-                            <div class="input-group col-sm-3">
-                                <span class="input-group-btn">
-                                    <button type="button" class="btn btn-default" disabled="">+7</button>
-                                </span>
-                                <input type="number" class="form-control col-sm-4" id="inputEmail3">
-                            </div>
+                    <div class="col-sm-offset-2">
+                        <label class="control-label">Телефонный номер</label>  
+                        <div class="input-group">
+                            <span class="input-group-addon" id="basic-addon1">+7</span>
+                            <input type="tel" class="form-control" aria-describedby="basic-addon1">
                         </div>
                     </div>
                 </form>
