@@ -18,7 +18,7 @@ $link=mysqli_connect("localhost", "root", "santikwh", "medspace");
 if(isset($_POST['submit']))
 {
     // Вытаскиваем из БД запись, у которой логин равняеться введенному
-    $query = mysqli_query($link,"SELECT doctor_ip, pass FROM login_pass WHERE login='".mysqli_real_escape_string($link,$_POST['login'])."' LIMIT 1");
+    $query = mysqli_query($link,"SELECT id_doctor, pass FROM login_pass WHERE login='".mysqli_real_escape_string($link,$_POST['login'])."' LIMIT 1");
     $data = mysqli_fetch_assoc($query);
 
     // Сравниваем пароли
@@ -28,10 +28,10 @@ if(isset($_POST['submit']))
         $hash = md5(generateCode(10));
 
         // Записываем в БД новый хеш авторизации и IP
-        mysqli_query($link, "UPDATE login_pass SET hash='".$hash." WHERE doctor_id='".$data['user_id']."'");
+        mysqli_query($link, "UPDATE login_pass SET hash='".$hash." WHERE id_doctor='".$data['id_doctor']."'");
 
         // Ставим куки
-        setcookie("id", $data['user_id'], time()+60*60*24*30);
+        setcookie("id", $data['id_doctor'], time()+60*60*24*30);
         setcookie("hash", $hash, time()+60*60*24*30,null,null,null,true); // httponly !!!
 
         // Переадресовываем браузер на страницу проверки нашего скрипта
