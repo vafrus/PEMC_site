@@ -66,8 +66,8 @@ if(isset($_POST['submit']))
                 <label for="pass">Пароль</label>
                 <input name="password" type="password" class="form-control" id="pass" placeholder="Пароль">
             </div>
-            <button name="submit" type="submit" class="btn btn-success">Войти</button>
-            <a name="register" type="register" class="btn btn-success" href="register.php">Регистрация</a>
+            <button name="submit" type="submit" class="btn btn-primary">Войти</button>
+            <a name="register" type="register" class="btn btn-success" href="register.php" style="text-align: right;">Регистрация</a>
         </form>
     </div>
     <script src="js/jquery-2.2.4.min.js"></script>

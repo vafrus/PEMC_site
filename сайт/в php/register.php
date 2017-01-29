@@ -60,7 +60,9 @@ if(isset($_POST['submit']))
 </head>
 
 <body>
-    <img src="img/logo2.png" alt="Логотип" height=66 width=200 style="margin:50px auto;display:block">
+    <a href="index.php">
+        <img src="img/logo2.png" alt="Логотип" height=66 width=200 style="margin:50px auto;display:block">
+    </a>
     <div class="well">
         <legend align="center">Регистрация</legend>
         <form method="POST" role="form">

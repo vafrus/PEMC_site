@@ -1,4 +1,7 @@
-<!doctype html>
+<!doctype html> 
+<?php
+include 'check_auth.php';
+?>
 <html>
 
 <head>
@@ -67,7 +70,7 @@
             </li>
         </ul>
         <hr>
-        		<?php
+        <?php
 		echo '<p class="panel-title text-center">' . date('d.m.Y') . '</p>';
 		?>
 		<script type="text/javascript" src="js/time.js"></script>   
@@ -75,10 +78,10 @@
     <div class="panel panel-default">
         <div class="panel-body grey">
             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                <p class="panel-title text-left">Название клиники</p>
+                <p class="panel-title text-left"><?php include 'clinic.php'; ?></p>
             </div>
             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                <p class="panel-title text-right">Пользователь</p>
+                <p class="panel-title text-right"><?php include 'user_name.php'; ?></p>
             </div>
         </div>
     </div>
