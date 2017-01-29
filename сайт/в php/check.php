@@ -17,7 +17,16 @@ if (isset($_COOKIE['id_doctor']) and isset($_COOKIE['hash']))
     }
     else
     {
-        header("Location: doctor.php"); exit();
+        $query = mysqli_query($link, "SELECT `Fam`, `Imya`, `Otch`, `Clinic` FROM `doctor` WHERE `id_doctor` = '".intval($_COOKIE['id_doctor'])."'");
+        $userdata = mysqli_fetch_assoc($query);
+        if((!$userdata['Fam']) or (!$userdata['Imya']) or (!$userdata['Otch']) or (!$userdata['Clinic']))
+        {
+            header("Location: add_doctor.php"); exit();
+        }
+        else
+        {
+            header("Location: doctor.php"); exit();
+        }
     }
 }
 else

@@ -1,4 +1,29 @@
-<?php
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MedSpace</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/signin.css" rel="stylesheet" type="text/css">
+    <link href="css/jasny-bootstrap.min.css" rel="stylesheet" media="screen">
+</head>
+
+<body>
+    <img src="img/logo2.png" alt="Логотип" height=66 width=200 style="margin:50px auto;display:block">
+    <div class="well">
+        <legend align="center">Вход в систему</legend>
+        <form method="POST" role="form">
+            <div class="form-group">
+                <label for="login">Логин</label>                
+                <input name="login" type="login" class="form-control" id="login" placeholder="Логин">
+            </div>
+            <div class="form-group">
+                <label for="pass">Пароль</label>
+                <input name="password" type="password" class="form-control" id="pass" placeholder="Пароль">
+            </div>
+            <button name="submit" type="submit" class="btn btn-primary">Войти</button>
+            <a name="register" type="register" class="btn btn-success" href="register.php" style="text-align: right;">Регистрация</a>
+        </form>
+        <?php
 // Страница авторизации
 
 // Функция для генерации случайной строки
@@ -39,36 +64,10 @@ if(isset($_POST['submit']))
     }
     else
     {
-        print "Вы ввели неправильный логин/пароль";
+        echo '<div class="alert alert-danger">Вы ввели неправильный логин/пароль</div>';
     }
 }
 ?>
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>MedSpace</title>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/signin.css" rel="stylesheet" type="text/css">
-    <link href="css/jasny-bootstrap.min.css" rel="stylesheet" media="screen">
-</head>
-
-<body>
-    <img src="img/logo2.png" alt="Логотип" height=66 width=200 style="margin:50px auto;display:block">
-    <div class="well">
-        <legend align="center">Вход в систему</legend>
-        <form method="POST" role="form">
-            <div class="form-group">
-                <label for="login">Логин</label>                
-                <input name="login" type="login" class="form-control" id="login" placeholder="Логин">
-            </div>
-            <div class="form-group">
-                <label for="pass">Пароль</label>
-                <input name="password" type="password" class="form-control" id="pass" placeholder="Пароль">
-            </div>
-            <button name="submit" type="submit" class="btn btn-primary">Войти</button>
-            <a name="register" type="register" class="btn btn-success" href="register.php" style="text-align: right;">Регистрация</a>
-        </form>
     </div>
     <script src="js/jquery-2.2.4.min.js"></script>
     <script src="js/jasny-bootstrap.min.js"></script>

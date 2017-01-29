@@ -11,14 +11,16 @@ if (mysqli_connect_errno())
 
 $query = "SELECT `Fam`,`Imya`,`Otch` FROM `doctor` WHERE id_doctor = '".intval($_COOKIE['id_doctor'])."' LIMIT 1";
                 
-if ($result = mysqli_query($link, $query)) 
+if($result = mysqli_query($link, $query))
 {
-    /* извлечение ассоциативного массива */
-    $row = mysqli_fetch_assoc($result);
-    echo $row["Fam"] . " " . $row["Imya"] . " " . $row["Otch"];
-}
-else
-{
-    echo 'Вы не авторизованы';
-}
+    if ($row = mysqli_fetch_assoc($result)) 
+    {
+        /* извлечение ассоциативного массива */
+        echo $row["Fam"] . " " . $row["Imya"] . " " . $row["Otch"];
+    }
+    else
+    {
+        echo 'Нет данных. Заполните информацию';
+    }
+}     
 ?>
