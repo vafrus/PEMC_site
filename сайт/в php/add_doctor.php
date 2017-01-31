@@ -14,8 +14,8 @@ if (mysqli_connect_errno())
 }
 if(isset($_POST['submit']))
 {
-    // Вытаскиваем из куки id_doctor
-    $id_doctor=$_COOKIE['id_doctor'];
+    // Вытаскиваем из сессии id_doctor
+    $id_doctor=$_SESSION['id_doctor'];
 
     // Вытаскиваем из формы записи
     
