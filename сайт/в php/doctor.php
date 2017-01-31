@@ -1,6 +1,21 @@
 <!doctype html> 
 <?php
-include 'check_auth.php';
+    include 'check_auth.php';
+
+    $link = mysqli_connect("localhost", "root", "santikwh", "medspace");
+    mysqli_set_charset($link, "utf8");
+
+    if (isset($_REQUEST[session_name()])) session_start();
+    /* проверка соединения */
+
+    if (mysqli_connect_errno()) 
+    {
+        printf("Соединение не удалось: %s\n", mysqli_connect_error());
+        exit();
+    }
+
+    $query = mysqli_query($link,"SELECT * FROM `doctor` WHERE `id_doctor`='".$_SESSION['id_doctor']."' LIMIT 1");
+    $res = mysqli_fetch_assoc($query);
 ?>
 <html>
 
@@ -104,19 +119,19 @@ include 'check_auth.php';
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Фамилия</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputEmail3">
+                            <?php echo '<input type="text" class="form-control" id="inputEmail3" value="'.$res['Fam'].'" readonly>' ?>
                         </div>
                     </div>
                    <div class="form-group">
                         <label class="col-sm-2 control-label">Имя</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputEmail3">
+                            <?php echo '<input type="text" class="form-control" id="inputEmail3" value="'.$res['Imya'].'" readonly>' ?>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Отчество</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputEmail3">
+                            <?php echo '<input type="text" class="form-control" id="inputEmail3" value="'.$res['Otch'].'" readonly>' ?>
                         </div>
                     </div>
                     <div class="form-group">
@@ -131,37 +146,38 @@ include 'check_auth.php';
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Специальность</label>
                         <div class="col-sm-3">
-                            <input type="text" class="form-control" id="inputPassword3" disabled>
+                            <?php echo '<input type="text" class="form-control" id="inputEmail3" value="'.$res['Specialty'].'" readonly>' ?>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Стаж работы</label>
                         <div class="col-sm-3">
-                            <input type="text" class="form-control" id="inputPassword3" disabled>
+                            <?php echo '<input type="text" class="form-control" id="inputEmail3" value="'.$res['Work_experience'].'" readonly>' ?>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Категория</label>
                         <div class="col-sm-3">
-                            <input type="text" class="form-control" id="inputPassword3" disabled>
+                            <?php echo '<input type="text" class="form-control" id="inputEmail3" value="'.$res['Category'].'" readonly>' ?>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Звание</label>
                         <div class="col-sm-3">
-                            <input type="text" class="form-control" id="inputPassword3" disabled>
+                            <?php echo '<input type="text" class="form-control" id="inputEmail3" value="'.$res['Rank'].'" readonly>' ?>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">ВУЗ</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputPassword3" disabled>
+                            <?php echo '<input type="text" class="form-control" id="inputEmail3" value="'.$res['University'].'" readonly>' ?>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Биография</label>
                         <div class="col-sm-10">
-                            <textarea class="form-control" rows="4" disabled></textarea>
+                            <?php echo '<textarea class="form-control" rows="4" value="'.$res['Biography'].'" disabled></textarea>' ?>
+                            
                         </div>
                     </div>
                 </form>

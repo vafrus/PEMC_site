@@ -1,7 +1,7 @@
 <?php
 $link = mysqli_connect("localhost", "root", "santikwh", "medspace");
 mysqli_set_charset($link, "utf8");
-session_start();
+if (isset($_REQUEST[session_name()])) session_start();
 /* проверка соединения */
 if (mysqli_connect_errno()) 
 {
