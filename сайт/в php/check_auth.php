@@ -1,8 +1,7 @@
 <?php
-
-if(!$_COOKIE['hash'] or !$_COOKIE['id_doctor'])
+session_start();
+if(!isset($_SESSION['id_doctor']))
 {
     header("Location: index.php"); exit();
 }
-
 ?>

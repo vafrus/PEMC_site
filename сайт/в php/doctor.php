@@ -70,8 +70,8 @@ include 'check_auth.php';
             </li>
         </ul>
         <hr>
-        		<?php
-		echo '<p class="panel-title text-center">' . date('d.m.Y') . '</p>';
+        <?php
+		    echo '<p class="panel-title text-center">' . date('d.m.Y') . '</p>';
 		?>
 		<script type="text/javascript" src="js/time.js"></script>
     </div>

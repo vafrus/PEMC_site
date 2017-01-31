@@ -22,5 +22,7 @@ if($result = mysqli_query($link, $query))
     {
         echo 'Нет данных. Заполните информацию';
     }
-}     
+    
+}  
 ?>
+
