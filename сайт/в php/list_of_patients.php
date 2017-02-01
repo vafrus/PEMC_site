@@ -130,7 +130,7 @@ include 'check_auth.php';
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Действия <span class="caret"></span></button>
                                     <ul class="dropdown-menu">
-                                        <li><a href="#">Открыть карту</a></li>
+                                        <li><a href="patient.php?number_card=' . $row["Number_card"]. '">Открыть карту</a></li>
                                         <li><a href="#">Выписать направление</a></li>
                                         <li><a href="#">Выписать эпикриз</a></li>
                                         <li><a href="#">Добавить в архив</a></li>

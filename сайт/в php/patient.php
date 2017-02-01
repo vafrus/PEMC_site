@@ -13,6 +13,50 @@ include 'check_auth.php';
     <link href="css/jasny-bootstrap.min.css" rel="stylesheet" media="screen">
 </head>
 
+<?php
+    $link = mysqli_connect("localhost", "root", "santikwh", "medspace");
+    mysqli_set_charset($link, "utf8");
+
+    if (isset($_REQUEST[session_name()])) session_start();
+    /* проверка соединения */
+
+    if (mysqli_connect_errno()) 
+    {
+        printf("Соединение не удалось: %s\n", mysqli_connect_error());
+        exit();
+    }
+    $card = $_GET['number_card'];
+    $query = mysqli_query($link, "SELECT * FROM `patient`, `passport` WHERE `patient`.`Number_card` = " . intval($card) . " LIMIT 1");
+    $res = mysqli_fetch_assoc($query);
+
+    $query2 = mysqli_query($link, "SELECT
+  `patient`.`Fam`,
+  `patient`.`Imya`,
+  `patient`.`Imya`,
+  `patient`.`Number_card`,
+  `region`.`Region`,
+  `region_city`.`City`,
+  `city_street`.`Street`,
+  `street_house`.`House`,
+  `house_apartment`.`Apartment`
+FROM
+  `patient` NATURAL
+JOIN
+  `region`,
+  `region_city`,
+  `city_street`,
+  `street_house`,
+  `house_apartment`
+WHERE
+  `patient`.`id_patient` = " . intval($res['id_patient']) . "  
+  AND patient.id_region = region.id_region 
+  AND patient.id_city = region_city.id_city 
+  AND patient.id_street = city_street.id_street 
+  AND patient.id_house = street_house.id_house 
+  AND patient.id_apartment = house_apartment.id_apartment");
+    $res2 = mysqli_fetch_assoc($query2);
+?>
+
 <body>
     <div class="navmenu navmenu-default navmenu-fixed-left offcanvas-sm">
         <div class="container-fluid">
@@ -104,32 +148,32 @@ include 'check_auth.php';
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Номер карты</label>
                         <div class="col-sm-5">
-                            <input type="n" class="form-control" id="inputEmail3">
+                            <?php echo '<input type="text" class="form-control" id="inputEmail3" value="'.$res['Number_card'].'" readonly>' ?>
                         </div>
                         <a role="button" class="pull-right btn btn-primary">Сохранить всё</a>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Фамилия</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputEmail3">
+                            <?php echo '<input type="text" class="form-control" id="inputEmail3" value="'.$res['Fam'].'" readonly>' ?>
                         </div>
                     </div>
                    <div class="form-group">
                         <label class="col-sm-2 control-label">Имя</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputEmail3">
+                            <?php echo '<input type="text" class="form-control" id="inputEmail3" value="'.$res['Imya'].'" readonly>' ?>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Отчество</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputEmail3">
+                            <?php echo '<input type="text" class="form-control" id="inputEmail3" value="'.$res['Otch'].'" readonly>' ?>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Дата рождения</label>
                         <div class="col-sm-3">
-                            <input type="date" class="form-control" id="inputPassword3">
+                            <?php echo '<input type="text" class="form-control" id="inputEmail3" value="'.$res['Date'].'" readonly>' ?>
                         </div>
                     </div>
                     <div class="form-group">
@@ -145,55 +189,56 @@ include 'check_auth.php';
                         <label class="col-sm-2 control-label">Паспорт</label>
                         <div class="col-sm-3">
                             <label class="control-label">Серия</label>
-                            <input type="text" class="form-control" id="inputPassword3">
+                            <?php echo '<input type="text" class="form-control" id="inputEmail3" value="'.$res['Serya'].'" readonly>' ?>
                         </div>
                         <div class="col-sm-7">
                             <label class="control-label">Номер</label>
-                            <input type="text" class="form-control" id="inputPassword3">
+                            <?php echo '<input type="text" class="form-control" id="inputEmail3" value="'.$res['Number'].'" readonly>' ?>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
                             <label class="control-label">Кем выдан</label>
-                            <input type="text" class="form-control" id="inputPassword3">
+                            <?php echo '<input type="text" class="form-control" id="inputEmail3" value="'.$res['Who_give'].'" readonly>' ?>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">ОМС</label>
                         <div class="col-sm-5">
-                            <input type="text" class="form-control" id="inputEmail3">
+                            <?php echo '<input type="text" class="form-control" id="inputEmail3" value="'.$res['OMS'].'" readonly>' ?>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Адрес</label>
                         <div class="col-sm-3">
                             <label class="control-label">Регион</label>
-                            <input type="text" class="form-control" id="inputPassword3">
+                            <?php echo '<input type="text" class="form-control" id="inputEmail3" value="'.$res2['Region'].'" readonly>' ?> 
                         </div>
                         <div class="col-sm-3">
                             <label class="control-label">Город</label>
-                            <input type="text" class="form-control" id="inputPassword3">
+                            <?php echo '<input type="text" class="form-control" id="inputEmail3" value="'.$res2['City'].'" readonly>' ?> 
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-4">
                             <label class="control-label">Улица</label>
-                            <input type="text" class="form-control" id="inputPassword3">
+                            <?php echo '<input type="text" class="form-control" id="inputEmail3" value="'.$res2['Street'].'" readonly>' ?> 
                         </div>
                         <div class="col-sm-3">
                             <label class="control-label">дом</label>
-                            <input type="text" class="form-control" id="inputPassword3">
+                            <?php echo '<input type="text" class="form-control" id="inputEmail3" value="'.$res2['House'].'" readonly>' ?> 
                         </div>
                         <div class="col-sm-3">
                             <label class="control-label">кв.</label>
-                            <input type="text" class="form-control" id="inputPassword3">
+                            <?php echo '<input type="text" class="form-control" id="inputEmail3" value="'.$res2['Apartment'].'" readonly>' ?> 
                         </div>
                     </div>
                     <div class="col-sm-offset-2">
                         <label class="control-label">Телефонный номер</label>  
                         <div class="input-group">
                             <span class="input-group-addon" id="basic-addon1">+7</span>
-                            <input type="tel" class="form-control" aria-describedby="basic-addon1">
+                            <?php echo '<input type="tel" class="form-control" aria-describedby="basic-addon1" value="'.$res['Telephone'].'" readonly>' ?> 
+                            
                         </div>
                     </div>
                 </form>
