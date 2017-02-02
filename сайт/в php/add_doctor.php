@@ -8,7 +8,6 @@ include 'check_auth.php';
 // Соединямся с БД
 $link=mysqli_connect("localhost", "root", "santikwh", "medspace");
 mysqli_set_charset($link, "utf8");
-session_start();
 if (mysqli_connect_errno()) 
 {
     printf("Соединение не удалось: %s\n", mysqli_connect_error());
