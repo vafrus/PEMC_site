@@ -45,20 +45,6 @@ if(isset($_POST['submit']))
     $university = mysqli_real_escape_string($link, $university);
     $biography = mysqli_real_escape_string($link, $biography);
 
-    echo $id_doctor, " ", 
-        $fam, " ",  
-        $imya, " ",  
-        $otch, " ",  
-        $office_number, " ", 
-        $gender, " ", 
-        $speciality, " ",  
-        $work_experience, " ",  
-        $category, " ", 
-        $rank, " ", 
-        $university, " ", 
-        $biography, " ",  
-        $clinic;
-
     $sql = "INSERT
     INTO
         `doctor`
@@ -97,27 +83,13 @@ if(isset($_POST['submit']))
     $res = mysqli_query($link, $sql);
     if($res == TRUE)
     {
-        echo 'Норм.';
         mysqli_close($link);
         header("Location: doctor.php"); 
         exit();
-             echo $id_doctor, 
-        $fam, 
-        $imya, 
-        $otch, 
-        $office_number, 
-        $gender, 
-        $speciality, 
-        $work_experience, 
-        $category,
-        $rank,
-        $university, 
-        $biography, 
-        $clinic;
     }
     else
     {
-        echo 'не.';
+        $err = "Ошибка сохранения данных";
     }
 
 }

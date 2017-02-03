@@ -31,13 +31,19 @@
                 // Соединямся с БД
                 $link=mysqli_connect("localhost", "root", "santikwh", "medspace");
                 mysqli_set_charset($link, "utf8");
+
+                //Проверка на авторизацию и выдача сообщения ($_SESSION['err'] задается в check_auth.php)
+                if(isset($_SESSION['err']))
+                {
+                    echo '<div class="alert alert-danger">' . $_SESSION['err'] . '</div>';
+                    unset($_SESSION['err']);
+                }
                 
                 if(isset($_POST['submit']))
                 {
                     // Вытаскиваем из БД запись, у которой логин равняеться введенному
                     $query = mysqli_query($link,"SELECT id_doctor, pass FROM login_pass WHERE login='".mysqli_real_escape_string($link,$_POST['login'])."' LIMIT 1");
                     $data = mysqli_fetch_assoc($query);
-
                     // Сравниваем пароли
                     if($data['pass'] === md5(md5($_POST['password'])))
                     {               
