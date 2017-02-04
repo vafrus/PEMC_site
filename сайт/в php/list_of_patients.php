@@ -64,7 +64,7 @@ include 'check_auth.php';
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="archive.php">
                     <span class="glyphicon glyphicon-inbox"></span> Архив
                 </a>
             </li>
@@ -113,7 +113,7 @@ include 'check_auth.php';
                     exit();
                 }
 
-                $query = "SELECT `Number_card`, `Fam`, `Imya`, `Otch` FROM `patient`";
+                $query = "SELECT `Number_card`, `Fam`, `Imya`, `Otch`, `In_archive` FROM `patient`";
 
                 if ($result = mysqli_query($link, $query)) 
                 {
@@ -121,24 +121,27 @@ include 'check_auth.php';
                     /* извлечение ассоциативного массива */
                     while ($row = mysqli_fetch_assoc($result)) 
                     {
-                        echo '<tr>' .
-                                '<td>' . $row["Number_card"] . '</td>'.
-                                '<td>' . $row["Fam"] . " " . $row["Imya"] . " " . $row["Otch"] . '</td>'.
-                                '<td>' .  '</td>'.
-                                '<td>' .  '</td>'.
-                                '<td>
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Действия <span class="caret"></span></button>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="patient.php?number_card=' . $row["Number_card"]. '">Открыть карту</a></li>
-                                        <li><a href="#">Выписать направление</a></li>
-                                        <li><a href="#">Выписать эпикриз</a></li>
-                                        <li><a href="#">Добавить в архив</a></li>
-                                        <li><a href="#">Удалить пациента</a></li>
-                                    </ul>
-                                </div>
-                                </td>
-                             </tr>';
+                        if($row["In_archive"] == 0)
+                        {
+                            echo '<tr>' .
+                                    '<td>' . $row["Number_card"] . '</td>'.
+                                    '<td>' . $row["Fam"] . " " . $row["Imya"] . " " . $row["Otch"] . '</td>'.
+                                    '<td>' .  '</td>'.
+                                    '<td>' .  '</td>'.
+                                    '<td>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Действия <span class="caret"></span></button>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="patient.php?number_card=' . $row["Number_card"]. '">Открыть карту</a></li>
+                                            <li><a href="#">Выписать направление</a></li>
+                                            <li><a href="#">Выписать эпикриз</a></li>
+                                            <li><a href="add_to_archive.php?number_card=' . $row["Number_card"]. '">Добавить в архив</a></li>
+                                            <li><a href="#">Удалить пациента</a></li>
+                                        </ul>
+                                    </div>
+                                    </td>
+                                </tr>';
+                        }
                     }
                 /* удаление выборки */
                 mysqli_free_result($result);

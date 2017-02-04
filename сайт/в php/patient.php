@@ -108,7 +108,7 @@ WHERE
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="archive.php">
                     <span class="glyphicon glyphicon-inbox"></span> Архив
                 </a>
             </li>

@@ -52,7 +52,7 @@ include 'check_auth.php';
                         </a>
                     </li>
                     <li>
-                        <a href="index5.php">
+                        <a href="reception.php">
                             Направления
                         </a>
                     </li>
@@ -86,36 +86,65 @@ include 'check_auth.php';
         </div>
     </div>
     <div>
-        <h2 align="center">Направления</h2>
-        <div class="table-responsive container">
+        <h2 align="center">Список пациентов</h2>
+        <div class="container">
+            <div class="text-right">
+                <a type="button" class="btn btn-success" href="patient.php">Добавить пациента</a>
+            </div>
             <table class="table table-striped">
                 <thead>
                     <tr>
                         <th>Номер карты</th>
-                        <th>Ф.И.О. пациента</th>
-                        <th>Куда направлен</th>
-                        <th>Ф.И.О. врача</th>
+                        <th>Ф.И.О.</th>
+                        <th>Диагноз</th>
+                        <th>Дата поступления</th>
+                        <th> </th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
+                <?php
+                $link = mysqli_connect("localhost", "root", "santikwh", "medspace");
+                mysqli_set_charset($link, "utf8");
+
+                /* проверка соединения */
+                if (mysqli_connect_errno()) 
+                {
+                    printf("Соединение не удалось: %s\n", mysqli_connect_error());
+                    exit();
+                }
+
+                $query = "SELECT `Number_card`, `Fam`, `Imya`, `Otch`, `In_archive` FROM `patient`";
+
+                if ($result = mysqli_query($link, $query)) 
+                {
+
+                    /* извлечение ассоциативного массива */
+                    while ($row = mysqli_fetch_assoc($result)) 
+                    {
+                        if($row["In_archive"] == 1)
+                        {
+                            echo '<tr>' .
+                                    '<td>' . $row["Number_card"] . '</td>'.
+                                    '<td>' . $row["Fam"] . " " . $row["Imya"] . " " . $row["Otch"] . '</td>'.
+                                    '<td>' .  '</td>'.
+                                    '<td>' .  '</td>'.
+                                    '<td>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Действия <span class="caret"></span></button>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="delete_in_archive.php?number_card=' . $row["Number_card"]. '">Удалить из архива</a></li>
+                                            <li><a href="#">Удалить пациента</a></li>
+                                        </ul>
+                                    </div>
+                                    </td>
+                                </tr>';
+                        }
+                    }
+                /* удаление выборки */
+                mysqli_free_result($result);
+                }
+                mysqli_close($link);
+                ?>
                 </tbody>
             </table>
         </div>
