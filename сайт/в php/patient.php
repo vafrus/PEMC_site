@@ -148,38 +148,55 @@ WHERE
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Номер карты</label>
                         <div class="col-sm-5">
-                            <?php echo '<input type="text" class="form-control" id="inputEmail3" value="'.$res['Number_card'].'" readonly>' ?>
+                            <?php echo '<input type="text" class="form-control" id="input_info" value="'.$res['Number_card'].'" disabled>' ?>
                         </div>
-                        <a role="button" class="pull-right btn btn-primary">Сохранить всё</a>
+                        <button type="button" role="button" class="pull-right btn btn-primary" onclick="myFunction()">Редактировать</button>
+                            <script>
+                            function myFunction() 
+                            {
+                                var inputs = document.getElementsByTagName("input");  
+                                var selects = document.getElementsByTagName("select");     
+                                var i;
+                                for (i = 0; i < inputs.length; i++) 
+                                {                                
+                                    inputs[i].disabled = false;                                    
+                                }   
+                                for (i = 0; i < selects.length; i++) 
+                                {                                
+                                    selects[i].disabled = false;                                    
+                                }                                         
+                            }
+                            </script>
+                        <a type="button" role="button" class="pull-right btn btn-primary">Сохранить всё</a>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Фамилия</label>
                         <div class="col-sm-10">
-                            <?php echo '<input type="text" class="form-control" id="inputEmail3" value="'.$res['Fam'].'" readonly>' ?>
+                            <?php echo '<input type="text" class="form-control" id="input_info" value="'.$res['Fam'].'" disabled>' ?>
                         </div>
                     </div>
                    <div class="form-group">
                         <label class="col-sm-2 control-label">Имя</label>
                         <div class="col-sm-10">
-                            <?php echo '<input type="text" class="form-control" id="inputEmail3" value="'.$res['Imya'].'" readonly>' ?>
+                            <?php echo '<input type="text" class="form-control" id="input_info" value="'.$res['Imya'].'" disabled>' ?>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Отчество</label>
                         <div class="col-sm-10">
-                            <?php echo '<input type="text" class="form-control" id="inputEmail3" value="'.$res['Otch'].'" readonly>' ?>
+                            <?php echo '<input type="text" class="form-control" id="input_info" value="'.$res['Otch'].'" disabled>' ?>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Дата рождения</label>
                         <div class="col-sm-3">
-                            <?php echo '<input type="text" class="form-control" id="inputEmail3" value="'.$res['Date'].'" readonly>' ?>
+                            <?php echo '<input type="text" class="form-control" id="input_info" value="'.$res['Date'].'" disabled>' ?>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Пол</label>
                         <div class="col-sm-3">
-                            <select class="form-control" id="sel1">
+                            <select class="form-control" id="sel1" disabled>
                                 <option value="1">муж</option>   
                                 <option value="2">жен</option>
                             </select>
@@ -189,55 +206,55 @@ WHERE
                         <label class="col-sm-2 control-label">Паспорт</label>
                         <div class="col-sm-3">
                             <label class="control-label">Серия</label>
-                            <?php echo '<input type="text" class="form-control" id="inputEmail3" value="'.$res['Serya'].'" readonly>' ?>
+                            <?php echo '<input type="text" class="form-control" id="input_info" value="'.$res['Serya'].'" disabled>' ?>
                         </div>
                         <div class="col-sm-7">
                             <label class="control-label">Номер</label>
-                            <?php echo '<input type="text" class="form-control" id="inputEmail3" value="'.$res['Number'].'" readonly>' ?>
+                            <?php echo '<input type="text" class="form-control" id="input_info" value="'.$res['Number'].'" disabled>' ?>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
                             <label class="control-label">Кем выдан</label>
-                            <?php echo '<input type="text" class="form-control" id="inputEmail3" value="'.$res['Who_give'].'" readonly>' ?>
+                            <?php echo '<input type="text" class="form-control" id="input_info" value="'.$res['Who_give'].'" disabled>' ?>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">ОМС</label>
                         <div class="col-sm-5">
-                            <?php echo '<input type="text" class="form-control" id="inputEmail3" value="'.$res['OMS'].'" readonly>' ?>
+                            <?php echo '<input type="text" class="form-control" id="input_info" value="'.$res['OMS'].'" disabled>' ?>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Адрес</label>
                         <div class="col-sm-3">
                             <label class="control-label">Регион</label>
-                            <?php echo '<input type="text" class="form-control" id="inputEmail3" value="'.$res2['Region'].'" readonly>' ?> 
+                            <?php echo '<input type="text" class="form-control" id="input_info" value="'.$res2['Region'].'" disabled>' ?> 
                         </div>
                         <div class="col-sm-3">
                             <label class="control-label">Город</label>
-                            <?php echo '<input type="text" class="form-control" id="inputEmail3" value="'.$res2['City'].'" readonly>' ?> 
+                            <?php echo '<input type="text" class="form-control" id="input_info" value="'.$res2['City'].'" disabled>' ?> 
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-4">
                             <label class="control-label">Улица</label>
-                            <?php echo '<input type="text" class="form-control" id="inputEmail3" value="'.$res2['Street'].'" readonly>' ?> 
+                            <?php echo '<input type="text" class="form-control" id="input_info" value="'.$res2['Street'].'" disabled>' ?> 
                         </div>
                         <div class="col-sm-3">
                             <label class="control-label">дом</label>
-                            <?php echo '<input type="text" class="form-control" id="inputEmail3" value="'.$res2['House'].'" readonly>' ?> 
+                            <?php echo '<input type="text" class="form-control" id="input_info" value="'.$res2['House'].'" disabled>' ?> 
                         </div>
                         <div class="col-sm-3">
                             <label class="control-label">кв.</label>
-                            <?php echo '<input type="text" class="form-control" id="inputEmail3" value="'.$res2['Apartment'].'" readonly>' ?> 
+                            <?php echo '<input type="text" class="form-control" id="input_info" value="'.$res2['Apartment'].'" disabled>' ?> 
                         </div>
                     </div>
                     <div class="col-sm-offset-2">
                         <label class="control-label">Телефонный номер</label>  
                         <div class="input-group">
                             <span class="input-group-addon" id="basic-addon1">+7</span>
-                            <?php echo '<input type="tel" class="form-control" aria-describedby="basic-addon1" value="'.$res['Telephone'].'" readonly>' ?> 
+                            <?php echo '<input type="tel" class="form-control" aria-describedby="basic-addon1" id="input_info" value="'.$res['Telephone'].'" disabled>' ?> 
                             
                         </div>
                     </div>
@@ -252,15 +269,15 @@ WHERE
                 <div class="col-md-2">
                     <div class="form-group">
                         <label class="control-label">Начало</label>
-                        <input type="text" class="form-control" id="inputPassword3">
+                        <input type="text" class="form-control" id="input_info" disabled>
                     </div>
                     <div class="form-group">
                         <label class="control-label">Окончание</label>
-                        <input type="text" class="form-control" id="inputPassword3">
+                        <input type="text" class="form-control" id="input_info" disabled>
                     </div>
                     <div class="form-group">
                         <label class="control-label">Исход лечения</label>
-                        <select class="form-control" id="sel1">
+                        <select class="form-control" id="input_info" disabled>
                             <option value="1">1</option>   
                             <option value="2">2</option>  
                             <option value="3">3</option>   
@@ -270,11 +287,11 @@ WHERE
                 <div class="col-md-10">
                     <div class="form-group">
                         <label class="control-label">Диагноз</label>
-                        <input type="text" class="form-control" id="inputPassword3" disabled>
+                        <input type="text" class="form-control" id="input_info" disabled>
                     </div>
                     <div class="form-group">
                         <label class="control-label">Врач</label>
-                        <input type="text" class="form-control" id="inputPassword3" disabled>
+                        <input type="text" class="form-control" id="input_info" disabled>
                     </div>
                     <br>
                     <a type="button" class="btn btn-success" href="table_history.php">История болезни</a>
