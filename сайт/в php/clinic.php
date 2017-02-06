@@ -9,7 +9,7 @@ if (mysqli_connect_errno())
     exit();
 }
 
-$query = "SELECT `Clinic` FROM `doctor` WHERE id_doctor = '".intval($_SESSION['id_doctor'])."' LIMIT 1";
+$query = "SELECT `Clinic` FROM `clinic`, `doctor` WHERE `doctor`.`id_doctor` = '".intval($_SESSION['id_doctor'])."'  AND `doctor`.`id_clinic`=`clinic`.`id_clinic` LIMIT 1";
 
 if($result = mysqli_query($link, $query))
 {

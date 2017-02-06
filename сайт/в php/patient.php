@@ -11,6 +11,7 @@ include 'check_auth.php';
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet" type="text/css">
     <link href="css/jasny-bootstrap.min.css" rel="stylesheet" media="screen">
+    <script src="js/enable_inputs.js"></script>
 </head>
 
 <?php
@@ -150,24 +151,8 @@ WHERE
                         <div class="col-sm-5">
                             <?php echo '<input type="text" class="form-control" id="input_info" value="'.$res['Number_card'].'" disabled>' ?>
                         </div>
-                        <button type="button" role="button" class="pull-right btn btn-primary" onclick="myFunction()">Редактировать</button>
-                            <script>
-                            function myFunction() 
-                            {
-                                var inputs = document.getElementsByTagName("input");  
-                                var selects = document.getElementsByTagName("select");     
-                                var i;
-                                for (i = 0; i < inputs.length; i++) 
-                                {                                
-                                    inputs[i].disabled = false;                                    
-                                }   
-                                for (i = 0; i < selects.length; i++) 
-                                {                                
-                                    selects[i].disabled = false;                                    
-                                }                                         
-                            }
-                            </script>
-                        <a type="button" role="button" class="pull-right btn btn-primary">Сохранить всё</a>
+                        <button type="button" role="button" class="pull-right btn btn-primary" onclick="setEnabled()">Редактировать</button>
+                        <button type="button" role="button" class="pull-right btn btn-primary">Сохранить всё</button>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Фамилия</label>

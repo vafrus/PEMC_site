@@ -26,6 +26,7 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet" type="text/css">
     <link href="css/jasny-bootstrap.min.css" rel="stylesheet" media="screen">
+    <script src="js/enable_inputs.js"></script>
 </head>
 
 <body>
@@ -118,66 +119,67 @@
                 <form class="form-horizontal" role="form">
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Фамилия</label>
-                        <div class="col-sm-10">
-                            <?php echo '<input type="text" class="form-control" id="inputEmail3" value="'.$res['Fam'].'" readonly>' ?>
+                        <div class="col-sm-6">
+                            <?php echo '<input type="text" class="form-control" id="inputEmail3" value="'.$res['Fam'].'" disabled>' ?>
                         </div>
+                        <button type="button" role="button" class="pull-right btn btn-primary" onclick="setEnabled()">Редактировать</button>
+                        <button type="button" role="button" class="pull-right btn btn-primary">Сохранить всё</button>
                     </div>
                    <div class="form-group">
                         <label class="col-sm-2 control-label">Имя</label>
-                        <div class="col-sm-10">
-                            <?php echo '<input type="text" class="form-control" id="inputEmail3" value="'.$res['Imya'].'" readonly>' ?>
+                        <div class="col-sm-6">
+                            <?php echo '<input type="text" class="form-control" id="inputEmail3" value="'.$res['Imya'].'" disabled>' ?>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Отчество</label>
-                        <div class="col-sm-10">
-                            <?php echo '<input type="text" class="form-control" id="inputEmail3" value="'.$res['Otch'].'" readonly>' ?>
+                        <div class="col-sm-6">
+                            <?php echo '<input type="text" class="form-control" id="inputEmail3" value="'.$res['Otch'].'" disabled>' ?>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Пол</label>
                         <div class="col-sm-3">
-                            <select class="form-control" id="sel1">
+                            <select class="form-control" id="sel1" disabled>
                                            <option value="1">муж</option>   
                                            <option value="2">жен</option>
-                                </select>
+                            </select>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Специальность</label>
                         <div class="col-sm-3">
-                            <?php echo '<input type="text" class="form-control" id="inputEmail3" value="'.$res['Specialty'].'" readonly>' ?>
+                            <?php echo '<input type="text" class="form-control" id="inputEmail3" value="'.$res['Specialty'].'" disabled>' ?>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Стаж работы</label>
                         <div class="col-sm-3">
-                            <?php echo '<input type="text" class="form-control" id="inputEmail3" value="'.$res['Work_experience'].'" readonly>' ?>
+                            <?php echo '<input type="text" class="form-control" id="inputEmail3" value="'.$res['Work_experience'].'" disabled>' ?>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Категория</label>
                         <div class="col-sm-3">
-                            <?php echo '<input type="text" class="form-control" id="inputEmail3" value="'.$res['Category'].'" readonly>' ?>
+                            <?php echo '<input type="text" class="form-control" id="inputEmail3" value="'.$res['Category'].'" disabled>' ?>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Звание</label>
                         <div class="col-sm-3">
-                            <?php echo '<input type="text" class="form-control" id="inputEmail3" value="'.$res['Rank'].'" readonly>' ?>
+                            <?php echo '<input type="text" class="form-control" id="inputEmail3" value="'.$res['Rank'].'" disabled>' ?>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">ВУЗ</label>
                         <div class="col-sm-10">
-                            <?php echo '<input type="text" class="form-control" id="inputEmail3" value="'.$res['University'].'" readonly>' ?>
+                            <?php echo '<input type="text" class="form-control" id="inputEmail3" value="'.$res['University'].'" disabled>' ?>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Биография</label>
                         <div class="col-sm-10">
                             <?php echo '<textarea class="form-control" rows="4" value="'.$res['Biography'].'" disabled></textarea>' ?>
-                            
                         </div>
                     </div>
                 </form>

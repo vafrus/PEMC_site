@@ -35,7 +35,7 @@ if(isset($_POST['submit']))
     $fam = mysqli_real_escape_string($link, $fam);
     $imya = mysqli_real_escape_string($link, $imya);
     $otch = mysqli_real_escape_string($link, $otch);
-    $gender = mysqli_real_escape_string($link, $gender);
+    $gender = intval($gender);
     $office_number = intval($office_number);
     $clinic = mysqli_real_escape_string($link, $clinic);
     $speciality = mysqli_real_escape_string($link, $speciality);
@@ -70,7 +70,7 @@ if(isset($_POST['submit']))
         '$imya', 
         '$otch', 
         $office_number, 
-        '$gender', 
+        $gender, 
         '$speciality', 
         $work_experience, 
         '$category',
@@ -93,10 +93,7 @@ if(isset($_POST['submit']))
     }
 
 }
-
-
-
-    ?>
+?>
 <html>
 <head>
     <meta charset="utf-8">
@@ -144,9 +141,9 @@ if(isset($_POST['submit']))
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Пол</label>
                         <div class="col-sm-3">
-                            <select name="gender" class="form-control" id="sel1">
-                                    <option value="муж">муж</option>   
-                                    <option value="жен">жен</option>
+                            <select name="gender" class="form-control">
+                                    <option value="1">муж.</option>   
+                                    <option value="2">жен.</option>
                             </select>
                         </div>
                     </div>
