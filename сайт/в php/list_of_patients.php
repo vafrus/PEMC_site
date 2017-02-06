@@ -89,7 +89,7 @@ include 'check_auth.php';
         <h2 align="center">Список пациентов</h2>
         <div class="container">
             <div class="text-right">
-                <a type="button" class="btn btn-success" href="patient.php">Добавить пациента</a>
+                <a type="button" class="btn btn-success" href="add_patient.php">Добавить пациента</a>
             </div>
             <table class="table table-striped">
                 <thead>
