@@ -18,43 +18,117 @@ include 'check_auth.php';
     mysqli_set_charset($link, "utf8");
 
     if (isset($_REQUEST[session_name()])) session_start();
-    /* проверка соединения */
 
-    /*if (mysqli_connect_errno()) 
+    if (mysqli_connect_errno()) 
     {
         printf("Соединение не удалось: %s\n", mysqli_connect_error());
         exit();
     }
-    $card = $_GET['number_card'];
-    $query = mysqli_query($link, "SELECT * FROM `patient`, `passport` WHERE `patient`.`Number_card` = " . intval($card) . " LIMIT 1");
-    $res = mysqli_fetch_assoc($query);
+    
+    if(isset($_POST['submit']))
+    {
+        $card = intval($_POST['card']);
+        $fam = mysqli_real_escape_string($link, $_POST['fam']);
+        $imya = mysqli_real_escape_string($link, $_POST['imya']);
+        $otch = mysqli_real_escape_string($link, $_POST['otch']);
+        $gender = intval($_POST['gender']);
+        $telephone = intval($_POST['telephone']);
+        $date = mysqli_real_escape_string($link, $_POST['date']);
+        $oms = intval($_POST['oms']);
+        $series = intval($_POST['series']);
+        $number = intval($_POST['number']);
+        $who_give = mysqli_real_escape_string($link, $_POST['who_give']);
 
-    $query2 = mysqli_query($link, "SELECT
-  `patient`.`Fam`,
-  `patient`.`Imya`,
-  `patient`.`Imya`,
-  `patient`.`Number_card`,
-  `region`.`Region`,
-  `region_city`.`City`,
-  `city_street`.`Street`,
-  `street_house`.`House`,
-  `house_apartment`.`Apartment`
-FROM
-  `patient` NATURAL
-JOIN
-  `region`,
-  `region_city`,
-  `city_street`,
-  `street_house`,
-  `house_apartment`
-WHERE
-  `patient`.`id_patient` = " . intval($res['id_patient']) . "  
-  AND patient.id_region = region.id_region 
-  AND patient.id_city = region_city.id_city 
-  AND patient.id_street = city_street.id_street 
-  AND patient.id_house = street_house.id_house 
-  AND patient.id_apartment = house_apartment.id_apartment");
-    $res2 = mysqli_fetch_assoc($query2);*/
+        $region = mysqli_real_escape_string($link, $_POST['region']);
+        $city = mysqli_real_escape_string($link, $_POST['city']);
+        $street = mysqli_real_escape_string($link, $_POST['street']);    
+        $house = intval($_POST['house']);
+        $apartment = intval($_POST['apartment']);
+
+        $sql = "SELECT `Region`,`id_region` FROM `region` WHERE `Region`='".$region."'";
+        if ($res = mysqli_query($link, $sql) and $res = mysqli_fetch_assoc($res))
+        {
+            $id_region = $res['id_region'];
+        }
+        else
+        {
+            $sql = "INSERT INTO `region` (`Region`) VALUES ('".$region."')";
+            $res = mysqli_query($link, $sql);
+            $id_region = intval(mysqli_insert_id($link));
+        }
+
+        $sql = "INSERT INTO `region_city` (`city`,`id_region`) VALUES ('".$city."','".$id_region."')";
+        $res = mysqli_query($link, $sql);
+        $id_city = intval(mysqli_insert_id($link));
+
+        $sql = "INSERT INTO `city_street` (`street`,`id_city`) VALUES ('".$street."','".$id_city."')";
+        $res = mysqli_query($link, $sql);
+        $id_street = intval(mysqli_insert_id($link));
+
+        $sql = "INSERT INTO `street_house` (`house`,`id_street`) VALUES ('".$house."','".$id_street."')";
+        $res = mysqli_query($link, $sql);
+        $id_house = intval(mysqli_insert_id($link));
+
+        $sql = "INSERT INTO `house_apartment` (`apartment`,`id_house`) VALUES ('".$apartment."','".$id_house."')";
+        $res = mysqli_query($link, $sql);
+        $id_apartment = intval(mysqli_insert_id($link));
+
+        $sql = "INSERT INTO `passport` (`serya`,`number`,`who_give`) VALUES ('$series','$number','$who_give')";
+        $res = mysqli_query($link, $sql);
+
+        $sql = "INSERT INTO `patient` 
+                (
+                    `number_card`,
+                    `fam`,
+                    `imya`,
+                    `otch`,
+                    `date`,
+                    `id_region`,
+                    `id_city`,
+                    `id_street`,
+                    `id_house`,
+                    `id_apartment`,
+                    `telephone`,
+                    `oms`,
+                    `gender`,
+                    `serya`,
+                    `number`,
+                    `in_archive`
+                ) 
+                VALUES (
+                    '$card',
+                    '$fam',
+                    '$imya',
+                    '$otch',
+                    '$date',
+                    '$id_region',
+                    '$id_city',
+                    '$id_street',
+                    '$id_house',
+                    '$id_apartment',
+                    '$telephone',
+                    '$oms',
+                    '$gender',
+                    '$series',
+                    '$number',
+                    '0'
+                )";
+        
+        echo $sql;
+
+        $res = mysqli_query($link, $sql);
+
+        if($res == TRUE)
+        {
+            mysqli_close($link);
+            //header("Location: doctor.php"); 
+            exit();
+        }
+        else
+        {
+            $err = "Ошибка сохранения данных";
+        }
+    }
 ?>
 
 <body>
@@ -144,42 +218,42 @@ WHERE
                 </div>
             </div>
             <div class="col-md-10">
-                <form class="form-horizontal" role="form">
+                <form  method="POST" class="form-horizontal" role="form">
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Номер карты</label>
                         <div class="col-sm-5">
-                            <input type="text" class="form-control" id="input">
+                            <input name="card" type="text" class="form-control" id="input">
                         </div>
-                        <a role="button" class="pull-right btn btn-primary">Сохранить всё</a>
+                        <button name="submit" type="submit" class="btn btn-primary">Сохранить</button>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Фамилия</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="input" >
+                            <input name="fam" type="text" class="form-control" id="input" >
                         </div>
                     </div>
                    <div class="form-group">
                         <label class="col-sm-2 control-label">Имя</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="input" >
+                            <input name="imya" type="text" class="form-control" id="input" >
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Отчество</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="input" >
+                            <input name="otch" type="text" class="form-control" id="input" >
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Дата рождения</label>
                         <div class="col-sm-3">
-                            <input type="text" class="form-control" id="input" >
+                            <input name="date" type="text" class="form-control" id="input" >
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Пол</label>
                         <div class="col-sm-3">
-                            <select class="form-control" id="sel1">
+                            <select name="gender" class="form-control" id="sel1">
                                 <option value="1">муж</option>   
                                 <option value="2">жен</option>
                             </select>
@@ -189,55 +263,55 @@ WHERE
                         <label class="col-sm-2 control-label">Паспорт</label>
                         <div class="col-sm-3">
                             <label class="control-label">Серия</label>
-                            <input type="text" class="form-control" id="input" >
+                            <input name="series" type="text" class="form-control" id="input" >
                         </div>
                         <div class="col-sm-7">
                             <label class="control-label">Номер</label>
-                            <input type="text" class="form-control" id="input" >
+                            <input name="number" type="text" class="form-control" id="input" >
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
                             <label class="control-label">Кем выдан</label>
-                            <input type="text" class="form-control" id="input" >
+                            <input name="who_give" type="text" class="form-control" id="input" >
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">ОМС</label>
                         <div class="col-sm-5">
-                            <input type="text" class="form-control" id="input" >
+                            <input name="oms" type="text" class="form-control" id="input" >
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Адрес</label>
                         <div class="col-sm-3">
                             <label class="control-label">Регион</label>
-                            <input type="text" class="form-control" id="input" > 
+                            <input name="region" type="text" class="form-control" id="input" > 
                         </div>
                         <div class="col-sm-3">
                             <label class="control-label">Город</label>
-                            <input type="text" class="form-control" id="input" > 
+                            <input name="city" type="text" class="form-control" id="input" > 
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-4">
                             <label class="control-label">Улица</label>
-                            <input type="text" class="form-control" id="input" > 
+                            <input name="street" type="text" class="form-control" id="input" > 
                         </div>
                         <div class="col-sm-3">
                             <label class="control-label">дом</label>
-                            <input type="text" class="form-control" id="input" > 
+                            <input name="house" type="text" class="form-control" id="input" > 
                         </div>
                         <div class="col-sm-3">
                             <label class="control-label">кв.</label>
-                            <input type="text" class="form-control" id="input" > 
+                            <input name="apartment" type="text" class="form-control" id="input" > 
                         </div>
                     </div>
                     <div class="col-sm-offset-2">
                         <label class="control-label">Телефонный номер</label>  
                         <div class="input-group">
                             <span class="input-group-addon" id="basic-addon1">+7</span>
-                            <input type="tel" class="form-control" aria-describedby="basic-addon1" > 
+                            <input name="telephone" type="tel" class="form-control" aria-describedby="basic-addon1" > 
                             
                         </div>
                     </div>
