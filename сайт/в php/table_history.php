@@ -100,11 +100,11 @@ include 'check_auth.php';
         <div class="form-group">
             <div class="col-md-5">
                 <label class="control-label">Ф.И.О. пациента</label>
-                <input type="text" class="form-control" id="card_id">
+                <input type="text" class="form-control" id="card_id" disabled>
             </div>
             <div class="col-md-4">
                 <label class="control-label">№ карты</label>
-                <input type="text" class="form-control" id="card_id">
+                <input type="text" class="form-control" id="card_id" disabled>
             </div>
             <div class="col-md-3">
                 <br>

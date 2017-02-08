@@ -14,7 +14,7 @@
         exit();
     }
 
-    $query = mysqli_query($link,"SELECT * FROM `doctor` WHERE `id_doctor`='".$_SESSION['id_doctor']."' LIMIT 1");
+    $query = mysqli_query($link,"SELECT * FROM `doctor` NATURAL JOIN `clinic` WHERE `id_doctor`='".$_SESSION['id_doctor']."' AND `doctor`.`id_clinic` = `clinic`.`id_clinic` LIMIT 1");
     $res = mysqli_fetch_assoc($query);
 ?>
 <html>
@@ -116,70 +116,94 @@
                 </div>
             </div>
             <div class="col-md-10">
-                <form class="form-horizontal" role="form">
+                <form method="POST" class="form-horizontal" action="update_doctor.php">
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Фамилия</label>
                         <div class="col-sm-6">
-                            <?php echo '<input type="text" class="form-control" id="inputEmail3" value="'.$res['Fam'].'" disabled>' ?>
+                            <?php echo '<input name="fam" type="text" class="form-control" id="inputEmail3" value="'.$res['Fam'].'" disabled></input>' ?>
                         </div>
-                        <button type="button" role="button" class="pull-right btn btn-primary" onclick="setEnabled()">Редактировать</button>
-                        <button type="button" role="button" class="pull-right btn btn-primary">Сохранить всё</button>
+                        <button type="button" class="pull-right btn btn-primary" onclick="setEnabled()">Редактировать</button>
+                        <button name="submit" type="submit" class="pull-right btn btn-primary" onclick="setDisabled()">Сохранить всё</button>
                     </div>
                    <div class="form-group">
                         <label class="col-sm-2 control-label">Имя</label>
                         <div class="col-sm-6">
-                            <?php echo '<input type="text" class="form-control" id="inputEmail3" value="'.$res['Imya'].'" disabled>' ?>
+                            <?php echo '<input name="imya" type="text" class="form-control" id="inputEmail3" value="'.$res['Imya'].'" disabled>' ?>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Отчество</label>
                         <div class="col-sm-6">
-                            <?php echo '<input type="text" class="form-control" id="inputEmail3" value="'.$res['Otch'].'" disabled>' ?>
+                            <?php echo '<input name="otch" type="text" class="form-control" id="inputEmail3" value="'.$res['Otch'].'" disabled>' ?>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Пол</label>
                         <div class="col-sm-3">
-                            <select class="form-control" id="sel1" disabled>
-                                           <option value="1">муж</option>   
-                                           <option value="2">жен</option>
+                            <select name="gender" class="form-control" id="sel1" disabled>
+                                <?php 
+                                    switch ($res['id_gender']) {
+                                        case 1: echo '<option value="1" selected>муж.</option>';
+                                                echo '<option value="2">жен.</option>';
+                                                break;
+                                        case 2: echo '<option value="1">муж.</option>';
+                                                echo '<option value="2" selected>жен.</option>';
+                                                break;
+                                        default: echo '<option value="0" selected>Не установлено</option>';
+                                                 echo '<option value="1">муж.</option>';
+                                                 echo '<option value="2">жен.</option>';
+                                                 break;
+                                    }
+                                ?>
                             </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Номер кабинета</label>
+                        <div class="col-sm-3">
+                            <?php echo '<input name="office_number" type="text" class="form-control" value="'.$res['Office_number'].'" disabled>' ?>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Специальность</label>
                         <div class="col-sm-3">
-                            <?php echo '<input type="text" class="form-control" id="inputEmail3" value="'.$res['Specialty'].'" disabled>' ?>
+                            <?php echo '<input name="speciality" type="text" class="form-control" value="'.$res['Specialty'].'" disabled>' ?>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Стаж работы</label>
                         <div class="col-sm-3">
-                            <?php echo '<input type="text" class="form-control" id="inputEmail3" value="'.$res['Work_experience'].'" disabled>' ?>
+                            <?php echo '<input name="work_experience" type="text" class="form-control" value="'.$res['Work_experience'].'" disabled>' ?>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Категория</label>
                         <div class="col-sm-3">
-                            <?php echo '<input type="text" class="form-control" id="inputEmail3" value="'.$res['Category'].'" disabled>' ?>
+                            <?php echo '<input name="category" type="text" class="form-control" id="inputEmail3" value="'.$res['Category'].'" disabled>' ?>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Звание</label>
                         <div class="col-sm-3">
-                            <?php echo '<input type="text" class="form-control" id="inputEmail3" value="'.$res['Rank'].'" disabled>' ?>
+                            <?php echo '<input name="rank" type="text" class="form-control" id="inputEmail3" value="'.$res['Rank'].'" disabled>' ?>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">ВУЗ</label>
-                        <div class="col-sm-10">
-                            <?php echo '<input type="text" class="form-control" id="inputEmail3" value="'.$res['University'].'" disabled>' ?>
+                        <div class="col-sm-3">
+                            <?php echo '<input name="university" type="text" class="form-control" id="inputEmail3" value="'.$res['University'].'" disabled>' ?>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Клиника</label>
+                        <div class="col-sm-3">
+                            <?php echo '<input name="clinic" type="text" class="form-control" id="inputEmail3" value="'.$res['Clinic'].'" disabled>' ?>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Биография</label>
                         <div class="col-sm-10">
-                            <?php echo '<textarea class="form-control" rows="4" value="'.$res['Biography'].'" disabled></textarea>' ?>
+                            <?php echo '<textarea name="biography" class="form-control" rows="4" value="'.$res['Biography'].'" disabled></textarea>' ?>
                         </div>
                     </div>
                 </form>
@@ -228,7 +252,5 @@
     <script src="js/jquery-2.2.4.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jasny-bootstrap.min.js"></script>
-    
 </body>
-
 </html>

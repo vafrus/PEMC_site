@@ -181,9 +181,21 @@ WHERE
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Пол</label>
                         <div class="col-sm-3">
-                            <select class="form-control" id="sel1" disabled>
-                                <option value="1">муж</option>   
-                                <option value="2">жен</option>
+                            <select class="form-control" disabled>
+                                <?php 
+                                    switch ($res['id_gender']) {
+                                        case 1: echo '<option value="1" selected>муж.</option>';
+                                                echo '<option value="2">жен.</option>';
+                                                break;
+                                        case 2: echo '<option value="1">муж.</option>';
+                                                echo '<option value="2" selected>жен.</option>';
+                                                break;
+                                        default: echo '<option value="0" selected>Не установлено</option>';
+                                                 echo '<option value="1">муж.</option>';
+                                                 echo '<option value="2">жен.</option>';
+                                                 break;
+                                    }
+                                ?>
                             </select>
                         </div>
                     </div>
@@ -279,8 +291,8 @@ WHERE
                         <input type="text" class="form-control" id="input_info" disabled>
                     </div>
                     <br>
-                    <a type="button" class="btn btn-success" href="table_history.php">История болезни</a>
-                    <a type="button" class="btn btn-success" href="table_ambulatory_cards.php">Амбулаторная карта</a>
+                    <?php echo '<a type="button" class="btn btn-success" href="table_history.php?fam=' . $res['Fam'] . '&imya='. $res['Imya'] .'&otch=' . $res['Otch'] . '&card='. $res['Number_card'] .'">История болезни</a>' ?>
+                    <?php echo '<a type="button" class="btn btn-success" href="table_ambulatory_cards.php?fam=' . $res['Fam'] . '&imya=' . $res['Imya'] . '&otch=' . $res['Otch'] . '&card=' . $res['Number_card'] . '">Амбулаторная карта</a>' ?>
                 </div>
             </div>
         </div>

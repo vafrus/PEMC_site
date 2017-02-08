@@ -1,15 +1,26 @@
-function setEnabled() {
-    var inputs = document.getElementsByTagName("input");
-    var selects = document.getElementsByTagName("select");
-    var textareas = document.getElementsByTagName("textarea");
+function enable(type, dis_en) {
+    var open = document.getElementsByTagName(type);
     var i;
-    for (i = 0; i < inputs.length; i++) {
-        inputs[i].disabled = false;
+    if (dis_en == "enabled") {
+        for (i = 0; i < open.length; i++) {
+            open[i].disabled = false;
+        }
     }
-    for (i = 0; i < selects.length; i++) {
-        selects[i].disabled = false;
+    if (dis_en == "disabled") {
+        for (i = 0; i < open.length; i++) {
+            open[i].disabled = true;
+        }
     }
-    for (i = 0; i < textareas.length; i++) {
-        textareas[i].disabled = false;
-    }
+}
+
+function setEnabled() {
+    enable("input", "enabled");
+    enable("select", "enabled");
+    enable("textarea", "enabled");
+}
+
+function setDisabled() {
+    enable("input", "disabled");
+    enable("select", "disabled");
+    enable("textarea", "disabled");
 }
