@@ -116,31 +116,31 @@
                 </div>
             </div>
             <div class="col-md-10">
-                <form method="POST" class="form-horizontal" action="update_doctor.php">
+                <form class="form-horizontal" role="form" method="POST" action="update_doctor.php">
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Фамилия</label>
                         <div class="col-sm-6">
-                            <?php echo '<input name="fam" type="text" class="form-control" id="inputEmail3" value="'.$res['Fam'].'" disabled></input>' ?>
+                            <?php echo '<input name="fam" type="text" class="form-control" id="inputEmail3" value="'.$res['Fam'].'" readonly>' ?>
                         </div>
-                        <button type="button" class="pull-right btn btn-primary" onclick="setEnabled()">Редактировать</button>
-                        <button name="submit" type="submit" class="pull-right btn btn-primary" onclick="setDisabled()">Сохранить всё</button>
+                        <button type="button" role="button" class="pull-right btn btn-primary" onclick="setEnabled()">Редактировать</button>
+                        <button name="submit" role="button" class="pull-right btn btn-primary" onclick="setDisabled()">Сохранить всё</button>
                     </div>
                    <div class="form-group">
                         <label class="col-sm-2 control-label">Имя</label>
                         <div class="col-sm-6">
-                            <?php echo '<input name="imya" type="text" class="form-control" id="inputEmail3" value="'.$res['Imya'].'" disabled>' ?>
+                            <?php echo '<input name="imya" type="text" class="form-control" id="inputEmail3" value="'.$res['Imya'].'" readonly>' ?>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Отчество</label>
                         <div class="col-sm-6">
-                            <?php echo '<input name="otch" type="text" class="form-control" id="inputEmail3" value="'.$res['Otch'].'" disabled>' ?>
+                            <?php echo '<input name="otch" type="text" class="form-control" id="inputEmail3" value="'.$res['Otch'].'" readonly>' ?>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Пол</label>
                         <div class="col-sm-3">
-                            <select name="gender" class="form-control" id="sel1" disabled>
+                            <select name="gender" class="form-control" id="sel1" readonly>
                                 <?php 
                                     switch ($res['id_gender']) {
                                         case 1: echo '<option value="1" selected>муж.</option>';
@@ -161,49 +161,49 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Номер кабинета</label>
                         <div class="col-sm-3">
-                            <?php echo '<input name="office_number" type="text" class="form-control" value="'.$res['Office_number'].'" disabled>' ?>
+                            <?php echo '<input name="office_number" type="text" class="form-control" id="inputEmail3" value="'.$res['Office_number'].'" readonly>' ?>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Специальность</label>
                         <div class="col-sm-3">
-                            <?php echo '<input name="speciality" type="text" class="form-control" value="'.$res['Specialty'].'" disabled>' ?>
+                            <?php echo '<input name="speciality" type="text" class="form-control" id="inputEmail3" value="'.$res['Specialty'].'" readonly>' ?>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Стаж работы</label>
                         <div class="col-sm-3">
-                            <?php echo '<input name="work_experience" type="text" class="form-control" value="'.$res['Work_experience'].'" disabled>' ?>
+                            <?php echo '<input name="work_experience" type="text" class="form-control" id="inputEmail3" value="'.$res['Work_experience'].'" readonly>' ?>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Категория</label>
                         <div class="col-sm-3">
-                            <?php echo '<input name="category" type="text" class="form-control" id="inputEmail3" value="'.$res['Category'].'" disabled>' ?>
+                            <?php echo '<input name="category" type="text" class="form-control" id="inputEmail3" value="'.$res['Category'].'" readonly>' ?>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Звание</label>
                         <div class="col-sm-3">
-                            <?php echo '<input name="rank" type="text" class="form-control" id="inputEmail3" value="'.$res['Rank'].'" disabled>' ?>
+                            <?php echo '<input name="rank" type="text" class="form-control" id="inputEmail3" value="'.$res['Rank'].'" readonly>' ?>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">ВУЗ</label>
                         <div class="col-sm-3">
-                            <?php echo '<input name="university" type="text" class="form-control" id="inputEmail3" value="'.$res['University'].'" disabled>' ?>
+                            <?php echo '<input name="university" type="text" class="form-control" id="inputEmail3" value="'.$res['University'].'" readonly>' ?>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Клиника</label>
                         <div class="col-sm-3">
-                            <?php echo '<input name="clinic" type="text" class="form-control" id="inputEmail3" value="'.$res['Clinic'].'" disabled>' ?>
+                            <?php echo '<input name="clinic" type="text" class="form-control" id="inputEmail3" value="'.$res['Clinic'].'" readonly>' ?>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Биография</label>
                         <div class="col-sm-10">
-                            <?php echo '<textarea name="biography" class="form-control" rows="4" value="'.$res['Biography'].'" disabled></textarea>' ?>
+                            <?php echo '<textarea name="biography" class="form-control" rows="4" value="'.$res['Biography'].'" readonly></textarea>' ?>
                         </div>
                     </div>
                 </form>
@@ -254,3 +254,85 @@
     <script src="js/jasny-bootstrap.min.js"></script>
 </body>
 </html>
+<?php
+if(isset($_POST['submit']))
+{
+    // Вытаскиваем из сессии id_doctor
+    $id_doctor=$_SESSION['id_doctor'];
+
+    // Вытаскиваем из формы записи
+    $fam = $_POST['fam'];
+    $imya = $_POST['imya'];
+    $otch = $_POST['otch'];
+    $gender = $_POST['gender'];
+    $office_number = $_POST['office_number'];
+    $clinic = $_POST['clinic'];
+    $speciality = $_POST['speciality'];
+    $work_experience = $_POST['work_experience'];
+    $category = $_POST['category'];    
+    $rank = $_POST['rank'];
+    $university = $_POST['university'];
+    $biography = $_POST['biography']; 
+
+    $fam = mysqli_real_escape_string($link, $fam);
+    $imya = mysqli_real_escape_string($link, $imya);
+    $otch = mysqli_real_escape_string($link, $otch);
+    $gender = intval($gender);
+    $office_number = intval($office_number);
+    $clinic = mysqli_real_escape_string($link, $clinic);
+    $speciality = mysqli_real_escape_string($link, $speciality);
+    $work_experience = intval($work_experience);
+    $category = mysqli_real_escape_string($link, $category);
+    $rank = intval($rank);
+    $university = mysqli_real_escape_string($link, $university);
+    $biography = mysqli_real_escape_string($link, $biography);
+
+    $sql = "INSERT
+    INTO
+        `doctor`
+        (
+        `id_doctor`,
+        `Fam`,
+        `Imya`,
+        `Otch`,
+        `Office_number`,
+        `Gender`,
+        `Specialty`,
+        `Work_experience`,
+        `Category`,
+        `Rank`,
+        `University`,
+        `Biography`,
+        `Clinic`
+        )
+    VALUES
+        (
+        $id_doctor, 
+        '$fam', 
+        '$imya', 
+        '$otch', 
+        $office_number, 
+        $gender, 
+        '$speciality', 
+        $work_experience, 
+        '$category',
+        $rank,
+        '$university', 
+        '$biography', 
+        '$clinic' 
+        )
+        ";
+    $res = mysqli_query($link, $sql);
+    if($res == TRUE)
+    {
+        mysqli_close($link);
+        header("Location: doctor.php"); 
+        exit();
+    }
+    else
+    {
+        $err = "Ошибка сохранения данных";
+    }
+
+}
+?>

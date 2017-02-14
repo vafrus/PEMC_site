@@ -253,7 +253,7 @@ include 'check_auth.php';
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Пол</label>
                         <div class="col-sm-3">
-                            <select name="gender" class="form-control">
+                            <select name="gender" class="form-control" id="sel1">
                                 <option value="0">Не установлено</option>';
                                 <option value="1">муж.</option>';
                                 <option value="2">жен.</option>';

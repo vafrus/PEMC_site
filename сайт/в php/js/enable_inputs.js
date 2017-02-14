@@ -1,14 +1,12 @@
 function enable(type, dis_en) {
     var open = document.getElementsByTagName(type);
     var i;
-    if (dis_en == "enabled") {
-        for (i = 0; i < open.length; i++) {
-            open[i].disabled = false;
+    for (i = 0; i < open.length; i++) {
+        if (dis_en == "enabled") {
+            open[i].readOnly = false;
         }
-    }
-    if (dis_en == "disabled") {
-        for (i = 0; i < open.length; i++) {
-            open[i].disabled = true;
+        if (dis_en == "disabled") {
+            open[i].readOnly = true;
         }
     }
 }
