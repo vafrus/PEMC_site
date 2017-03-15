@@ -113,12 +113,10 @@ include 'check_auth.php';
                     '$number',
                     '0'
                 )";
-        
-        echo $sql;
 
         $res = mysqli_query($link, $sql);
 
-        if($res == TRUE)
+        if($res === TRUE)
         {
             mysqli_close($link);
             //header("Location: doctor.php"); 
@@ -224,7 +222,11 @@ include 'check_auth.php';
                         <div class="col-sm-5">
                             <input name="card" type="text" class="form-control" id="input">
                         </div>
-                        <button name="submit" type="submit" class="btn btn-primary">Сохранить</button>
+                        <div class="col-sm-5">
+                            <div class="pull-right">
+                                <button name="submit" type="submit" class="btn btn-primary">Сохранить</button>
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Фамилия</label>

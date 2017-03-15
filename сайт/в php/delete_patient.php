@@ -9,10 +9,17 @@
         printf("Соединение не удалось: %s\n", mysqli_connect_error());
         exit();
     }
-
-    $query = "UPDATE `patient` SET `In_archive` = 1 WHERE `patient`.`Number_card` = " . intval($card) . "";
+    
+    $query = "DELETE FROM `patient` WHERE `patient`.`Number_card` = " . intval($card) . "";
     $result = mysqli_query($link, $query);
-    mysqli_close($link);
-    header("Location: list_of_patients.php"); 
-    exit();
+    if($result === false)
+    {
+        echo '<div class="alert alert-danger">Что-то не так. Пациент не удален.</div>';
+    }
+    else
+    {
+        mysqli_close($link);
+        header("Location: list_of_patients.php"); 
+        exit();
+    }
 ?>

@@ -136,7 +136,7 @@ include 'check_auth.php';
                                             <li><a href="#">Выписать направление</a></li>
                                             <li><a href="#">Выписать эпикриз</a></li>
                                             <li><a href="add_to_archive.php?number_card=' . $row["Number_card"]. '">Добавить в архив</a></li>
-                                            <li><a href="#">Удалить пациента</a></li>
+                                            <li><a href="delete_patient.php?number_card=' . $row["Number_card"]. '">Удалить пациента</a></li>
                                         </ul>
                                     </div>
                                     </td>

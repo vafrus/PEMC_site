@@ -1,98 +1,182 @@
 <!doctype html> 
 <?php
 include 'check_auth.php';
+
 ?>
 <?php
 // Ввод информации о враче
 
 // Соединямся с БД
 $link=mysqli_connect("localhost", "root", "santikwh", "medspace");
+
 mysqli_set_charset($link, "utf8");
+
 if (mysqli_connect_errno()) 
 {
-    printf("Соединение не удалось: %s\n", mysqli_connect_error());
+	
+	printf("Соединение не удалось: %s\n", mysqli_connect_error());
+	
 }
+
 if(isset($_POST['submit']))
 {
-    // Вытаскиваем из сессии id_doctor
-    $id_doctor=$_SESSION['id_doctor'];
+	
+	// 	Вытаскиваем из сессии id_doctor
+	$id_doctor=$_SESSION['id_doctor'];
+	
+	// 	Вытаскиваем из формы записи
+	
+	$fam = $_POST['fam'];
+	
+	$imya = $_POST['imya'];
+	
+	$otch = $_POST['otch'];
+	
+	$gender = $_POST['gender'];
+	
+	$office_number = $_POST['office_number'];
+	
+	$clinic = $_POST['clinic'];
+	
+	$speciality = $_POST['speciality'];
+	
+	$work_experience = $_POST['work_experience'];
+	
+	$category = $_POST['category'];
+	
+	$rank = $_POST['rank'];
+	
+	$university = $_POST['university'];
+	
+	$biography = $_POST['biography'];
+	
+	
+	$fam = mysqli_real_escape_string($link, $fam);
+	
+	$imya = mysqli_real_escape_string($link, $imya);
+	
+	$otch = mysqli_real_escape_string($link, $otch);
+	
+	$gender = intval($gender);
+	
+	$office_number = intval($office_number);
+	
+	$clinic = mysqli_real_escape_string($link, $clinic);
+	
+	$speciality = mysqli_real_escape_string($link, $speciality);
+	
+	$work_experience = intval($work_experience);
+	
+	$category = mysqli_real_escape_string($link, $category);
+	
+	$rank = intval($rank);
+	
+	$university = mysqli_real_escape_string($link, $university);
+	
+	$biography = mysqli_real_escape_string($link, $biography);
+	
+	
+	//Запрос на клинику
+	$query = "SELECT * FROM `clinic` WHERE Clinic = '" . $clinic . "'";
+	
+    $result = mysqli_query($link, $query);
 
-    // Вытаскиваем из формы записи
-    
-    $fam = $_POST['fam'];
-    $imya = $_POST['imya'];
-    $otch = $_POST['otch'];
-    $gender = $_POST['gender'];
-    $office_number = $_POST['office_number'];
-    $clinic = $_POST['clinic'];
-    $speciality = $_POST['speciality'];
-    $work_experience = $_POST['work_experience'];
-    $category = $_POST['category'];    
-    $rank = $_POST['rank'];
-    $university = $_POST['university'];
-    $biography = $_POST['biography']; 
+	//Проверяем на отсутствие клиники в таблице
+	if(mysqli_num_rows($result) == 1) 
+	{
+		$row = mysqli_fetch_assoc($result);
+		
+		$id_clinic = $row["id_clinic"];
+				
+	}
+	
+	
+	else
+	{
+		
+		$sql = "INSERT INTO `clinic` (`id_clinic`, `Clinic`) VALUES (NULL, '". $clinic ."')";
 
-    $fam = mysqli_real_escape_string($link, $fam);
-    $imya = mysqli_real_escape_string($link, $imya);
-    $otch = mysqli_real_escape_string($link, $otch);
-    $gender = intval($gender);
-    $office_number = intval($office_number);
-    $clinic = mysqli_real_escape_string($link, $clinic);
-    $speciality = mysqli_real_escape_string($link, $speciality);
-    $work_experience = intval($work_experience);
-    $category = mysqli_real_escape_string($link, $category);
-    $rank = intval($rank);
-    $university = mysqli_real_escape_string($link, $university);
-    $biography = mysqli_real_escape_string($link, $biography);
+		
+		$result = mysqli_query($link, $sql);
+		
+		
+		$query = "SELECT * FROM `clinic` WHERE `clinic`.`Clinic` = '" . $clinic . "' LIMIT 1";
+		
+		
+		$result = mysqli_query($link, $query);
 
-    $sql = "INSERT
+
+		$row = mysqli_fetch_assoc($result);
+
+		
+		$id_clinic = $row["id_clinic"];
+		
+		
+	}
+		
+	$sql = "INSERT
     INTO
         `doctor`
         (
-        `id_doctor`,
-        `Fam`,
-        `Imya`,
-        `Otch`,
-        `Office_number`,
-        `Gender`,
-        `Specialty`,
-        `Work_experience`,
-        `Category`,
-        `Rank`,
-        `University`,
-        `Biography`,
-        `Clinic`
+        `id_doctor`, 
+        `Fam`, 
+        `Imya`, 
+        `Otch`,  
+        `Office_number`, 
+        `id_gender`, 
+        `Specialty`, 
+        `Work_experience`, 
+        `Category`, 
+        `Rank`, 
+        `University`, 
+        `Biography`, 
+        `id_clinic`
         )
     VALUES
         (
-        $id_doctor, 
+        '$id_doctor', 
         '$fam', 
         '$imya', 
         '$otch', 
-        $office_number, 
-        $gender, 
+        '$office_number', 
+        '$gender', 
         '$speciality', 
-        $work_experience, 
+        '$work_experience', 
         '$category',
-        $rank,
+        '$rank',
         '$university', 
         '$biography', 
-        '$clinic' 
+        '$id_clinic' 
         )
         ";
-    $res = mysqli_query($link, $sql);
-    if($res == TRUE)
-    {
-        mysqli_close($link);
-        header("Location: doctor.php"); 
-        exit();
-    }
-    else
-    {
-        $err = "Ошибка сохранения данных";
-    }
 
+    echo $sql;
+	
+	$res = mysqli_query($link, $sql);
+	
+	if($res === TRUE)
+	{
+		
+		mysqli_close($link);
+		
+		header("Location: doctor.php");
+		
+		exit();
+		
+	}
+	
+	else
+	{
+		
+		$err = "Ошибка сохранения данных";
+		
+		echo $err;
+		
+	}
+	
+	
 }
+
 ?>
 <html>
 <head>

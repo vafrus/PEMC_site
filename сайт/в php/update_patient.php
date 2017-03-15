@@ -24,34 +24,38 @@ session_start();
 if(isset($_POST["submit"]))
 {
 	
-	// 	Вытаскиваем из сессии id_doctor
-	$id_doctor = $_SESSION['id_doctor'];
-	
 	// 	Вытаскиваем из формы записи
+    $card = $_POST["number_card"];
+
 	$fam = $_POST["fam"];
 	
 	$imya = $_POST['imya'];
 	
 	$otch = $_POST['otch'];
+
+    $date = $_POST['date'];
 	
 	$gender = $_POST['gender'];
 	
-	$office_number = $_POST['office_number'];
+	$serya = $_POST['serya'];
 	
-	$speciality = $_POST['speciality'];
+	$number = $_POST['number'];
 	
-	$work_experience = $_POST['work_experience'];
+	$who_give = $_POST['who_give'];
 	
-	$category = $_POST['category'];
+	$oms = $_POST['oms'];
 	
-	$rank = $_POST['rank'];
+	$region = $_POST['region'];
 	
-	$university = $_POST['university'];
+	$city = $_POST['city'];
 	
-	$clinic = $_POST['clinic'];
+	$street = $_POST['street'];
 	
-	$biography = $_POST['biography'];
+	$house = $_POST['house'];
+
+    $apartment = $_POST['apartment'];
 	
+    //После этого места еще не переписывал
 	
 	$fam = mysqli_real_escape_string($link, $fam);
 	

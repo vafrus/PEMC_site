@@ -61,10 +61,13 @@
             }
             else 
             {
-                echo '<legend align="center">Вы авторизованы</legend>
+                echo 
+                '<legend align="center">Вы авторизованы</legend>
                 <form method="POST" role="form">
-                    <button name="logout" type="submit" class="btn btn-primary">Выйти</button>
-                    <a class="btn" href="doctor.php">Профиль</a>
+                    <div class="text-center">
+                        <a class="btn btn-primary" href="doctor.php">Профиль</a>
+                        <button name="logout" type="submit" class="btn btn-danger">Выйти</button>
+                    </div>
                 </form>';
             }
             if (isset($_POST['logout'])) {
