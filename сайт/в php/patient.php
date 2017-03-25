@@ -1,6 +1,7 @@
 <!doctype html> 
 <?php
 include 'check_auth.php';
+
 ?>
 <html>
 
@@ -15,22 +16,34 @@ include 'check_auth.php';
 </head>
 
 <?php
-    $link = mysqli_connect("localhost", "root", "santikwh", "medspace");
-    mysqli_set_charset($link, "utf8");
+$link = mysqli_connect("localhost", "root", "12369", "medspace_patients");
 
-    if (isset($_REQUEST[session_name()])) session_start();
-    /* проверка соединения */
+mysqli_set_charset($link, "utf8");
 
-    if (mysqli_connect_errno()) 
-    {
-        printf("Соединение не удалось: %s\n", mysqli_connect_error());
-        exit();
-    }
-    $card = $_GET['number_card'];
-    $query = mysqli_query($link, "SELECT * FROM `patient`, `passport` WHERE `patient`.`Number_card` = " . intval($card) . " LIMIT 1");
-    $res = mysqli_fetch_assoc($query);
 
-    $query2 = mysqli_query($link, "SELECT
+if (isset($_REQUEST[session_name()])) session_start();
+
+
+/* проверка соединения */
+
+
+if (mysqli_connect_errno()) 
+{
+	
+	printf("Соединение не удалось: %s\n", mysqli_connect_error());
+	
+	exit();
+	
+}
+
+$card = $_GET['number_card'];
+
+$query = mysqli_query($link, "SELECT * FROM `patient`, `passport` WHERE `patient`.`Number_card` = " . intval($card) . " LIMIT 1");
+
+$res = mysqli_fetch_assoc($query);
+
+
+$query2 = mysqli_query($link, "SELECT
   `patient`.`Fam`,
   `patient`.`Imya`,
   `patient`.`Imya`,
@@ -55,7 +68,9 @@ WHERE
   AND patient.id_street = city_street.id_street 
   AND patient.id_house = street_house.id_house 
   AND patient.id_apartment = house_apartment.id_apartment");
-    $res2 = mysqli_fetch_assoc($query2);
+
+$res2 = mysqli_fetch_assoc($query2);
+
 ?>
 
 <body>
@@ -116,17 +131,19 @@ WHERE
         </ul>
         <hr>
         <?php
-		echo '<p class="panel-title text-center">' . date('d.m.Y') . '</p>';
-		?>
+            echo '<p class="panel-title text-center">' . date('d.m.Y') . '</p>';
+        ?>
 		<script type="text/javascript" src="js/time.js"></script>   
     </div>
     <div class="panel panel-default">
         <div class="panel-body grey">
             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                <p class="panel-title text-left"><?php include 'clinic.php'; ?></p>
+                <p class="panel-title text-left"><?php include 'clinic.php';
+?></p>
             </div>
             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                <p class="panel-title text-right"><?php include 'user_name.php'; ?></p>
+                <p class="panel-title text-right"><?php include 'user_name.php';
+?></p>
             </div>
         </div>
     </div>
@@ -184,17 +201,29 @@ WHERE
                             <select name="gender" class="form-control" readonly>
                                 <?php 
                                     switch ($res['id_gender']) {
+                                        
                                         case 1: echo '<option value="1" selected>муж.</option>';
-                                                echo '<option value="2">жен.</option>';
-                                                break;
+                                        
+                                        echo '<option value="2">жен.</option>';
+                                        
+                                        break;
+                                        
                                         case 2: echo '<option value="1">муж.</option>';
-                                                echo '<option value="2" selected>жен.</option>';
-                                                break;
+                                        
+                                        echo '<option value="2" selected>жен.</option>';
+                                        
+                                        break;
+                                        
                                         default: echo '<option value="0" selected>Не установлено</option>';
-                                                 echo '<option value="1">муж.</option>';
-                                                 echo '<option value="2">жен.</option>';
-                                                 break;
+                                        
+                                        echo '<option value="1">муж.</option>';
+                                        
+                                        echo '<option value="2">жен.</option>';
+                                        
+                                        break;
+                                        
                                     }
+
                                 ?>
                             </select>
                         </div>
@@ -340,7 +369,5 @@ WHERE
     <script src="js/jquery-2.2.4.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jasny-bootstrap.min.js"></script>
-    
 </body>
-
 </html>

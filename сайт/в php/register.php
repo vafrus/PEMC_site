@@ -2,7 +2,7 @@
 // Страница регистрации нового пользователя
 
 // Соединямся с БД
-$link=mysqli_connect("localhost", "root", "santikwh", "medspace");
+$link=mysqli_connect("localhost", "root", "12369", "medspace");
 mysqli_set_charset($link, "utf8");
 if(isset($_POST['submit']))
 {

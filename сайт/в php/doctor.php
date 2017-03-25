@@ -2,7 +2,7 @@
 <?php
     include 'check_auth.php';
 
-    $link = mysqli_connect("localhost", "root", "santikwh", "medspace");
+    $link = mysqli_connect("localhost", "root", "12369", "medspace");
     mysqli_set_charset($link, "utf8");
 
     if (isset($_REQUEST[session_name()])) session_start();
@@ -203,7 +203,7 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Биография</label>
                         <div class="col-sm-10">
-                            <?php echo '<textarea name="biography" class="form-control" rows="4" value="'.$res['Biography'].'" readonly></textarea>' ?>
+                            <?php echo '<textarea name="biography" class="form-control" rows="4" readonly>'.$res["Biography"].'</textarea>' ?>
                         </div>
                     </div>
                 </form>

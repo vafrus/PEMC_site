@@ -1,5 +1,5 @@
 <?php
-$link = mysqli_connect("localhost", "root", "santikwh", "medspace");
+$link = mysqli_connect("localhost", "root", "12369", "medspace");
 mysqli_set_charset($link, "utf8");
 if (isset($_REQUEST[session_name()])) session_start();
 /* проверка соединения */

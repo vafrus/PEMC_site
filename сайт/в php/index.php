@@ -29,7 +29,7 @@
                         </form>';
 
                 // Соединямся с БД
-                $link=mysqli_connect("localhost", "root", "santikwh", "medspace");
+                $link=mysqli_connect("localhost", "root", "12369", "medspace");
                 mysqli_set_charset($link, "utf8");
 
                 //Проверка на авторизацию и выдача сообщения ($_SESSION['err'] задается в check_auth.php)

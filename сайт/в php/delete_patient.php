@@ -1,6 +1,6 @@
 <?php
     $card = $_GET['number_card'];
-    $link = mysqli_connect("localhost", "root", "santikwh", "medspace");
+    $link = mysqli_connect("localhost", "root", "12369", "medspace");
     mysqli_set_charset($link, "utf8");
 
     /* проверка соединения */

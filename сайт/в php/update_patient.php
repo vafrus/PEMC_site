@@ -1,5 +1,5 @@
 <?php
-$link = mysqli_connect("localhost", "root", "santikwh", "medspace");
+$link = mysqli_connect("localhost", "root", "12369", "medspace_patents");
 
 mysqli_set_charset($link, "utf8");
 
@@ -110,7 +110,7 @@ if(isset($_POST["submit"]))
 		
 	}
 	
-	$sql = "UPDATE `doctor`
+	$sql = "UPDATE `patient`
     SET
     `Fam`= '".$fam."',
     `Imya`='" . $imya . "',
